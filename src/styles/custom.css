@@ -1,8 +1,23 @@
 /* ============================================
-   DevCult Brand Colors and Design System
+   DevCult Blog - Custom Styles
+
+   This stylesheet applies the DevCult design system
+   to the Astro Starlight blog theme.
+
+   Sections:
+   1. Fonts
+   2. CSS Variables (Dark Theme)
+   3. CSS Variables (Light Theme)
+   4. Typography
+   5. Layout & Structure
+   6. Components
+   7. Theme-Specific Overrides
    ============================================ */
 
-/* Font Face Declarations - Coconat Font Family */
+/* ============================================
+   1. FONTS - COCONAT FONT FAMILY
+   ============================================ */
+
 @font-face {
   font-family: "Coconat";
   src: url("/fonts/Coconat-Regular.woff2") format("woff2");
@@ -28,9 +43,11 @@
 }
 
 /* ============================================
-   ROOT VARIABLES - DARK THEME (DEFAULT)
+   2. CSS VARIABLES - DARK THEME(DEFAULT)
    ============================================ */
-:root {
+
+:root,
+:root[data-theme="dark"] {
   /* Brand Colors */
   --brand-300: #ffa954;
   --brand-400: #ff8f26;
@@ -38,7 +55,7 @@
   --brand-600: #e66000;
   --brand-700: #b34400;
 
-  /* Starlight Color Overrides - Dark Theme */
+  /* Starlight Color Overrides */
   --sl-color-accent-low: #1a0a00;
   --sl-color-accent: #ff6a00;
   --sl-color-accent-high: #ffa954;
@@ -52,14 +69,17 @@
   --sl-color-gray-6: #1f2937;
   --sl-color-black: #000000;
 
+  /* Backgrounds */
   --sl-color-bg: #000000;
   --sl-color-bg-nav: rgba(0, 0, 0, 0.95);
   --sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
   --sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
 
+  /* Text */
   --sl-color-text: #ffffff;
   --sl-color-text-accent: #ff8f26;
 
+  /* Borders */
   --sl-color-hairline: rgba(255, 255, 255, 0.1);
   --sl-color-hairline-light: rgba(255, 255, 255, 0.15);
   --sl-color-hairline-shade: rgba(255, 255, 255, 0.2);
@@ -68,49 +88,21 @@
   --sl-color-text-link: #ff8f26;
   --sl-color-text-link-hover: #ffa954;
 
-  /* Effects */
+  /* Custom Variables */
+  --card-bg: #171717;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover-border: rgba(255, 106, 0, 0.3);
+  --search-bg: rgba(0, 0, 0, 0.4);
+  --search-border: rgba(255, 255, 255, 0.15);
   --glow-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
   --glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.5);
 
-  /* Border radius */
+  /* Border Radius */
   --sl-border-radius: 0.75rem;
 
   /* Typography */
   --sl-font-heading:
     "Coconat", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-}
-
-/* ============================================
-   DARK THEME
-   ============================================ */
-:root[data-theme="dark"] {
-  --sl-color-accent-low: #1a0a00;
-  --sl-color-accent: #ff6a00;
-  --sl-color-accent-high: #ffa954;
-
-  --sl-color-bg: #000000;
-  --sl-color-bg-nav: rgba(0, 0, 0, 0.95);
-  --sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
-  --sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
-
-  --sl-color-text: #ffffff;
-  --sl-color-text-accent: #ff8f26;
-
-  --sl-color-hairline: rgba(255, 255, 255, 0.1);
-  --sl-color-hairline-light: rgba(255, 255, 255, 0.15);
-  --sl-color-hairline-shade: rgba(255, 255, 255, 0.2);
-
-  --sl-color-text-link: #ff8f26;
-  --sl-color-text-link-hover: #ffa954;
-
-  /* Cards and surfaces */
-  --card-bg: #171717;
-  --card-border: rgba(255, 255, 255, 0.1);
-  --card-hover-border: rgba(255, 106, 0, 0.3);
-
-  /* Search */
-  --search-bg: rgba(0, 0, 0, 0.4);
-  --search-border: rgba(255, 255, 255, 0.15);
 }
 
 /* Force link hovers to be darker orange (not white!) */
@@ -120,49 +112,49 @@
 }
 
 /* ============================================
-   LIGHT THEME
+   3. CSS VARIABLESLIGHTTHEME
    ============================================ */
+
 :root[data-theme="light"] {
-  /* Accent colors - keep brand orange */
+  /* Accent colors */
   --sl-color-accent-low: #fff5ed;
   --sl-color-accent: #ff6a00;
   --sl-color-accent-high: #b34400;
 
-  /* Backgrounds - clean white base */
+  /* Backgrounds */
   --sl-color-bg: #ffffff;
   --sl-color-bg-nav: rgba(255, 255, 255, 0.95);
   --sl-color-bg-sidebar: rgba(255, 255, 255, 0.95);
   --sl-color-bg-inline-code: rgba(255, 106, 0, 0.08);
 
-  /* Text colors - dark on light */
+  /* Text colors */
   --sl-color-text: #1f2937;
   --sl-color-text-accent: #e66000;
+  --sl-color-white: #1f2937;
   --sl-color-gray-1: #1f2937;
   --sl-color-gray-2: #374151;
   --sl-color-gray-3: #6b7280;
   --sl-color-gray-4: #9ca3af;
   --sl-color-gray-5: #d1d5db;
   --sl-color-gray-6: #f3f4f6;
+  --sl-color-black: #1f2937;
 
-  /* Hairlines and borders - subtle dark lines */
+  /* Borders */
   --sl-color-hairline: rgba(0, 0, 0, 0.1);
   --sl-color-hairline-light: rgba(0, 0, 0, 0.08);
   --sl-color-hairline-shade: rgba(0, 0, 0, 0.15);
 
-  /* Links - darker orange for contrast */
+  /* Links */
   --sl-color-text-link: #e66000;
   --sl-color-text-link-hover: #b34400;
 
-  /* Cards and surfaces - light gray backgrounds */
+  /* Custom variables */
   --card-bg: #f9fafb;
   --card-border: rgba(0, 0, 0, 0.1);
   --card-hover-border: rgba(255, 106, 0, 0.4);
-
-  /* Search - light background */
-  --search-bg: #f9fafb;
+  --search-bg: #ffffff;
   --search-border: rgba(0, 0, 0, 0.15);
-
-  /* Shadows for light theme */
+  --search-text: #1f2937;
   --glow-shadow: 0 0 20px rgba(255, 106, 0, 0.15);
   --glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.25);
 }
@@ -240,7 +232,7 @@
 }
 
 /* ============================================
-   TYPOGRAPHY - COCONAT FOR HEADINGS
+   4. TYPOGRAPHY
    ============================================ */
 
 /* Apply Coconat to all headings */
@@ -255,19 +247,7 @@ h6,
 .sl-markdown-content h3,
 .sl-markdown-content h4,
 .sl-markdown-content h5,
-.sl-markdown-content h6 {
-  font-family:
-    "Coconat",
-    "Inter",
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    sans-serif;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
-
-/* Site title */
+.sl-markdown-content h6,
 .site-title {
   font-family:
     "Coconat",
@@ -277,59 +257,274 @@ h6,
     -apple-system,
     sans-serif;
   font-weight: 600;
-  letter-spacing: 0.025em;
+  letter-spacing: -0.01em;
 }
 
-/* Hero headings get extra weight */
 .hero h1,
 .hero h2 {
   font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.site-title {
+  letter-spacing: 0.025em;
+}
+
+/* Gradient text effect */
+h1.gradient-text,
+h2.gradient-text,
+h3.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--brand-400),
+    var(--brand-500),
+    var(--brand-300)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Content readability */
+article {
+  line-height: 1.7;
+}
+
+article p {
+  margin-bottom: 1.25rem;
 }
 
 /* ============================================
-   SELECTION
+   5. LAYOUT & STRUCTURE
    ============================================ */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure content is above background effects */
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+header {
+  backdrop-filter: blur(10px);
+}
+
+:root[data-theme="dark"] header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Sidebar */
+:root[data-theme="dark"] .sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .sidebar {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+:root[data-theme="dark"] footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
+}
+
+:root[data-theme="light"] footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 4rem;
+}
+
+/* Hero section */
+.hero {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+/* ============================================
+   6. COMPONENTS
+   ============================================ */
+
+/* Selection */
 ::selection {
   background-color: rgba(255, 106, 0, 0.3);
   color: var(--sl-color-text);
 }
 
+/* Focus states */
+*:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+/* Links */
+a:hover,
+button:hover {
+  transition: all 0.2s ease;
+}
+
+/* Buttons */
+.sl-link-button[data-variant="primary"],
+.pagination-link[aria-current="page"] {
+  background-color: var(--brand-500);
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: var(--glow-shadow);
+  border: none;
+}
+
+.sl-link-button[data-variant="primary"]:hover {
+  background-color: var(--brand-600);
+  box-shadow: var(--glow-shadow-strong);
+  color: #ffffff !important;
+}
+
+.sl-link-button[data-variant="primary"] a {
+  color: #ffffff !important;
+}
+
+.sl-link-button[data-variant="secondary"] {
+  border: 1px solid var(--brand-500);
+  background-color: rgba(255, 106, 0, 0.1);
+  color: var(--sl-color-text);
+}
+
+.sl-link-button[data-variant="secondary"]:hover {
+  background-color: rgba(255, 106, 0, 0.2);
+  box-shadow: var(--glow-shadow);
+}
+
+/* Cards */
+.sl-card,
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sl-card:hover,
+.card:hover {
+  border-color: var(--card-hover-border);
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
+}
+
+/* Code blocks */
+pre {
+  border-radius: var(--sl-border-radius);
+}
+
+:root[data-theme="dark"] pre {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] pre {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Inline code */
+code {
+  background-color: var(--sl-color-bg-inline-code);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.9em;
+}
+
+:root[data-theme="dark"] code {
+  border: 1px solid rgba(255, 106, 0, 0.2);
+}
+
+:root[data-theme="light"] code {
+  border: 1px solid rgba(255, 106, 0, 0.15);
+}
+
+pre code {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--brand-500);
+  background-color: rgba(255, 106, 0, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Tables */
+table {
+  border-radius: var(--sl-border-radius);
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] table {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] table {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+th {
+  background-color: rgba(255, 106, 0, 0.1);
+  border-bottom: 2px solid var(--brand-500);
+}
+
+tr:hover {
+  background-color: rgba(255, 106, 0, 0.05);
+}
+
+/* Search */
+.search-input,
+site-search input {
+  border: 1px solid var(--search-border);
+  background-color: var(--search-bg);
+}
+
+.search-input:focus,
+site-search input:focus {
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+}
+
+/* Tags & badges */
+.tag,
+.badge {
+  background-color: rgba(255, 106, 0, 0.15);
+  border: 1px solid rgba(255, 106, 0, 0.3);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+:root[data-theme="dark"] .tag,
+:root[data-theme="dark"] .badge {
+  color: var(--brand-300);
+}
+
+:root[data-theme="light"] .tag,
+:root[data-theme="light"] .badge {
+  color: var(--brand-700);
+}
+
 /* ============================================
-   SCROLLING & SCROLLBAR
-   ============================================ */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Scrollbar - adjust for theme */
-:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-  border-radius: 10px;
-}
-
-:root[data-theme="dark"] ::-webkit-scrollbar-track {
-  background: #0b0b0b;
-}
-
-:root[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 10px;
-}
-
-:root[data-theme="light"] ::-webkit-scrollbar-track {
-  background: #f3f4f6;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* ============================================
-   BACKGROUND EFFECTS
+   7. THEME-SPECIFIC OVERRIDES
    ============================================ */
 
-/* Dark theme background glows */
+/* Background effects - Dark theme */
 :root[data-theme="dark"] body::before {
   content: "";
   position: fixed;
@@ -364,7 +559,7 @@ html {
   filter: blur(80px);
 }
 
-/* Light theme - subtle background */
+/* Background effects - Light theme */
 :root[data-theme="light"] body::before {
   content: "";
   position: fixed;
@@ -399,7 +594,105 @@ html {
   filter: blur(80px);
 }
 
-/* Mobile - smaller glows */
+/* Scrollbar - Dark theme */
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0b0b0b;
+}
+
+/* Scrollbar - Light theme */
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Light theme - Force correct colors (more specific selectors) */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6,
+:root[data-theme="light"] .sl-markdown-content h1,
+:root[data-theme="light"] .sl-markdown-content h2,
+:root[data-theme="light"] .sl-markdown-content h3,
+:root[data-theme="light"] .sl-markdown-content h4,
+:root[data-theme="light"] .sl-markdown-content h5,
+:root[data-theme="light"] .sl-markdown-content h6,
+:root[data-theme="light"] .hero h1,
+:root[data-theme="light"] .hero h2,
+:root[data-theme="light"] .sl-card h2,
+:root[data-theme="light"] .sl-card h3 {
+  color: #1f2937 !important;
+}
+
+:root[data-theme="light"] a,
+:root[data-theme="light"] .sl-markdown-content a {
+  color: #e66000 !important;
+}
+
+:root[data-theme="light"] a:hover,
+:root[data-theme="light"] .sl-markdown-content a:hover {
+  color: #b34400 !important;
+}
+
+:root[data-theme="light"] site-search,
+:root[data-theme="light"] site-search input,
+:root[data-theme="light"] .search-input {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+:root[data-theme="light"] site-search input::placeholder {
+  color: #6b7280 !important;
+}
+
+:root[data-theme="light"] nav a,
+:root[data-theme="light"] .sidebar a {
+  color: #374151 !important;
+}
+
+:root[data-theme="light"] nav a:hover,
+:root[data-theme="light"] .sidebar a:hover {
+  color: #e66000 !important;
+}
+
+/* Sidebar - Selected/current page styling */
+:root[data-theme="light"] .sidebar a[aria-current="page"],
+:root[data-theme="light"] .sidebar a[aria-current="page"]:hover {
+  color: #e66000 !important;
+  font-weight: 600;
+}
+
+:root[data-theme="dark"] .sidebar a[aria-current="page"],
+:root[data-theme="dark"] .sidebar a[aria-current="page"]:hover {
+  color: #ff8f26 !important;
+  font-weight: 600;
+}
+
+.sidebar a[aria-current="page"] {
+  background-color: rgba(255, 106, 0, 0.1) !important;
+}
+
+.sidebar a[aria-current="page"]:hover {
+  background-color: rgba(255, 106, 0, 0.15) !important;
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   body::before,
   body::after {
@@ -408,261 +701,63 @@ html {
   }
 }
 
-/* Ensure content is above background effects */
-.page {
-  position: relative;
-  z-index: 1;
-}
-
 /* ============================================
-   HEADER & NAVIGATION
+   BUTTON & SIDEBAR FIXES
    ============================================ */
-header {
-  backdrop-filter: blur(10px);
-}
 
-:root[data-theme="dark"] header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-:root[data-theme="light"] header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-/* ============================================
-   SIDEBAR
-   ============================================ */
-:root[data-theme="dark"] .sidebar {
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-:root[data-theme="light"] .sidebar {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* ============================================
-   BUTTONS & LINKS
-   ============================================ */
-a:hover,
-button:hover {
-  transition: all 0.2s ease;
-}
-
-/* Primary buttons with brand glow */
+/* Fix: Links inside orange buttons should be white (not orange on orange) */
+.sl-link-button[data-variant="primary"] a,
 .sl-link-button[data-variant="primary"],
-.pagination-link[aria-current="page"] {
-  background-color: var(--brand-500);
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: var(--glow-shadow);
-  border: none;
+button.sl-link-button[data-variant="primary"] {
+  color: #ffffff !important;
 }
 
+.sl-link-button[data-variant="primary"]:hover a,
 .sl-link-button[data-variant="primary"]:hover {
-  background-color: var(--brand-600);
-  box-shadow: var(--glow-shadow-strong);
+  color: #ffffff !important;
 }
 
-/* Secondary buttons with border */
-.sl-link-button[data-variant="secondary"] {
-  border: 1px solid var(--brand-500);
-  background-color: rgba(255, 106, 0, 0.1);
-  color: var(--sl-color-text);
+/* Fix: Selected/current sidebar item should stay visible on hover */
+:root[data-theme="light"] .sidebar a[aria-current="page"],
+:root[data-theme="light"] .sidebar a[aria-current="page"]:hover {
+  color: #e66000 !important;
+  font-weight: 600;
 }
 
-.sl-link-button[data-variant="secondary"]:hover {
-  background-color: rgba(255, 106, 0, 0.2);
-  box-shadow: var(--glow-shadow);
+:root[data-theme="dark"] .sidebar a[aria-current="page"],
+:root[data-theme="dark"] .sidebar a[aria-current="page"]:hover {
+  color: #ff8f26 !important;
+  font-weight: 600;
 }
 
-/* ============================================
-   CODE BLOCKS
-   ============================================ */
-
-/* Code blocks */
-:root[data-theme="dark"] pre {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--sl-border-radius);
+/* Ensure sidebar selected item has visible background */
+.sidebar a[aria-current="page"] {
+  background-color: rgba(255, 106, 0, 0.1) !important;
 }
 
-:root[data-theme="light"] pre {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: var(--sl-border-radius);
-}
-
-/* Inline code */
-code {
-  background-color: var(--sl-color-bg-inline-code);
-  border-radius: 0.375rem;
-  padding: 0.125rem 0.375rem;
-  font-size: 0.9em;
-}
-
-:root[data-theme="dark"] code {
-  border: 1px solid rgba(255, 106, 0, 0.2);
-}
-
-:root[data-theme="light"] code {
-  border: 1px solid rgba(255, 106, 0, 0.15);
-}
-
-pre code {
-  border: none;
-  padding: 0;
-  background: transparent;
+.sidebar a[aria-current="page"]:hover {
+  background-color: rgba(255, 106, 0, 0.15) !important;
 }
 
 /* ============================================
-   CARDS
+   HERO BUTTON HOVER IMPROVEMENTS
    ============================================ */
-.sl-card,
-.card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 1rem;
-  transition: all 0.3s ease;
+
+:root[data-theme="light"] .hero .actions a.primary,
+:root[data-theme="light"] .hero .actions .action.primary {
+  color: #ffffff !important;
 }
 
-.sl-card:hover,
-.card:hover {
-  border-color: var(--card-hover-border);
-  box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
+/* Make button text slightly dimmed on hover (both themes) */
+.hero .actions a.primary:hover,
+.hero .actions .action.primary:hover,
+.sl-link-button[data-variant="primary"]:hover {
+  color: #000000 !important;
 }
 
-/* ============================================
-   BLOCKQUOTES
-   ============================================ */
-blockquote {
-  border-left: 4px solid var(--brand-500);
-  background-color: rgba(255, 106, 0, 0.05);
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  margin: 1.5rem 0;
-}
-
-/* ============================================
-   TABLES
-   ============================================ */
-:root[data-theme="dark"] table {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--sl-border-radius);
-  overflow: hidden;
-}
-
-:root[data-theme="light"] table {
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: var(--sl-border-radius);
-  overflow: hidden;
-}
-
-th {
-  background-color: rgba(255, 106, 0, 0.1);
-  border-bottom: 2px solid var(--brand-500);
-}
-
-tr:hover {
-  background-color: rgba(255, 106, 0, 0.05);
-}
-
-/* ============================================
-   SEARCH
-   ============================================ */
-.search-input,
-site-search input {
-  border: 1px solid var(--search-border);
-  background-color: var(--search-bg);
-}
-
-.search-input:focus,
-site-search input:focus {
-  border-color: var(--brand-500);
-  box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
-}
-
-/* ============================================
-   FOCUS STATES
-   ============================================ */
-*:focus-visible {
-  outline: 2px solid var(--brand-500);
-  outline-offset: 2px;
-}
-
-/* ============================================
-   TAGS & BADGES
-   ============================================ */
-.tag,
-.badge {
-  background-color: rgba(255, 106, 0, 0.15);
-  border: 1px solid rgba(255, 106, 0, 0.3);
-  border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-:root[data-theme="dark"] .tag,
-:root[data-theme="dark"] .badge {
-  color: var(--brand-300);
-}
-
-:root[data-theme="light"] .tag,
-:root[data-theme="light"] .badge {
-  color: var(--brand-700);
-}
-
-/* ============================================
-   GRADIENT TEXT
-   ============================================ */
-h1.gradient-text,
-h2.gradient-text,
-h3.gradient-text {
-  background: linear-gradient(
-    to right,
-    var(--brand-400),
-    var(--brand-500),
-    var(--brand-300)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ============================================
-   CONTENT READABILITY
-   ============================================ */
-article {
-  line-height: 1.7;
-}
-
-article p {
-  margin-bottom: 1.25rem;
-}
-
-/* ============================================
-   HERO SECTION
-   ============================================ */
-.hero {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-:root[data-theme="dark"] footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 4rem;
-}
-
-:root[data-theme="light"] footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin-top: 4rem;
+/* Make button background darker on hover */
+.hero .actions a.primary:hover,
+.hero .actions .action.primary:hover,
+.sl-link-button[data-variant="primary"]:hover {
+  background-color: #d65a00 !important; /* Darker than #e66000 */
 }
