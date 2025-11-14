@@ -1,20 +1,10 @@
 # DevCult Blog
 
+[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+
 The official blog of DevCult - sharing technical insights, developer experience best practices, and DevRel strategies.
 
 🌐 **Live Site:** [blog.devcult.io](https://blog.devcult.io)
-
-## About
-
-This blog is built with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build), optimized for technical content, code examples, and developer-focused articles.
-
-### Design System
-
-The blog uses the same design system as [devcult.io](https://devcult.io):
-- **Brand Color:** `#FF6A00` (orange)
-- **Background:** Black with subtle brand glows
-- **Typography:** System fonts with consistent weights
-- **Style:** Modern, minimal, developer-focused
 
 ## Quick Start
 
@@ -49,7 +39,7 @@ npm run preview      # Preview production build locally
 npm run astro        # Run Astro CLI commands
 ```
 
-## Contributing Blog Posts
+## Writing new blog posts
 
 We welcome contributions! Here's how to add a new blog post:
 
@@ -132,7 +122,13 @@ import { Card, CardGrid, Aside, Tabs, TabItem } from '@astrojs/starlight/compone
 npm run dev
 ```
 
-Navigate to `http://localhost:4321/posts/your-post-title/`
+Visit `http://localhost:4321` and verify:
+- All pages load correctly
+- Images display properly
+- Links work
+- Code examples render with syntax highlighting
+- Search works
+- Mobile responsive
 
 ### 5. Submit Your Post
 
@@ -329,45 +325,6 @@ sidebar: [
 ],
 ```
 
-## Maintenance
-
-### Regular Tasks
-
-- **Weekly**: Review and respond to comments/issues
-- **Monthly**: Update dependencies (`npm update`)
-- **Quarterly**: Audit content for accuracy
-- **Annually**: Review and update older posts
-
-### Updating Dependencies
-
-```bash
-# Check for updates
-npm outdated
-
-# Update all dependencies
-npm update
-
-# Update Astro specifically
-npm install astro@latest @astrojs/starlight@latest
-```
-
-### Testing Before Deploy
-
-Always test locally before pushing:
-
-```bash
-npm run build
-npm run preview
-```
-
-Visit `http://localhost:4321` and verify:
-- All pages load correctly
-- Images display properly
-- Links work
-- Code examples render with syntax highlighting
-- Search works
-- Mobile responsive
-
 ## Troubleshooting
 
 ### Build Fails
@@ -419,37 +376,15 @@ npm run dev -- --port 3000
 - [Markdown Guide](https://www.markdownguide.org/)
 - [MDX Documentation](https://mdxjs.com/)
 
-### Tools
-
-- [Carbon](https://carbon.now.sh/) - Beautiful code screenshots
-- [Excalidraw](https://excalidraw.com/) - Diagrams and illustrations
-- [ImageOptim](https://imageoptim.com/) - Image optimization
-- [Grammarly](https://grammarly.com/) - Writing assistance
-
-### Inspiration
-
-- [Astro Blog](https://astro.build/blog/)
-- [Vercel Blog](https://vercel.com/blog)
-- [Linear Blog](https://linear.app/blog)
-- [Supabase Blog](https://supabase.com/blog)
-
 ## Support
 
 ### Questions or Issues?
 
 - 🐛 [Report a bug](https://github.com/0xDevCult/blog/issues)
 - 💡 [Request a feature](https://github.com/0xDevCult/blog/issues)
-- 💬 [Join our community](https://devcult.io#contact)
-- 📧 [Email us](mailto:info@devcult.io)
+- 💬 [Contact us](https://devcult.io#contact)
 
 ### Contributing
-
-We welcome contributions! Please:
-
-1. Check existing issues and PRs
-2. Follow the writing style guide
-3. Test your changes locally
-4. Submit a clear PR description
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
