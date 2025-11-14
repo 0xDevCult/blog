@@ -1,0 +1,313 @@
+/* DevCult Brand Colors and Design System */
+:root {
+	/* Brand Colors */
+	--sl-color-accent-low: #1a0a00;
+	--sl-color-accent: #ff6a00;
+	--sl-color-accent-high: #ffa954;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #f9fafb;
+	--sl-color-gray-2: #e5e7eb;
+	--sl-color-gray-3: #9ca3af;
+	--sl-color-gray-4: #4b5563;
+	--sl-color-gray-5: #1f2937;
+	--sl-color-gray-6: #0f0f0f;
+	--sl-color-black: #000000;
+
+	/* Brand-specific colors */
+	--brand-300: #ffa954;
+	--brand-400: #ff8f26;
+	--brand-500: #ff6a00;
+	--brand-700: #b34400;
+	--gray-800: #171717;
+
+	/* Override Starlight defaults with DevCult branding */
+	--sl-color-bg: #000000;
+	--sl-color-bg-nav: rgba(0, 0, 0, 0.95);
+	--sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
+	--sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
+
+	--sl-color-text: #ffffff;
+	--sl-color-text-accent: #ff8f26;
+
+	--sl-color-hairline: rgba(255, 255, 255, 0.1);
+	--sl-color-hairline-light: rgba(255, 255, 255, 0.15);
+
+	/* Links */
+	--sl-color-text-link: #ff8f26;
+	--sl-color-text-link-hover: #ffa954;
+
+	/* Shadows and glows */
+	--glow-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+	--glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.5);
+
+	/* Border radius */
+	--sl-border-radius: 0.75rem;
+}
+
+/* Dark theme overrides (default) */
+:root[data-theme='dark'] {
+	--sl-color-accent-low: #1a0a00;
+	--sl-color-accent: #ff6a00;
+	--sl-color-accent-high: #ffa954;
+	--sl-color-bg: #000000;
+	--sl-color-bg-nav: rgba(0, 0, 0, 0.95);
+	--sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
+}
+
+/* Light theme (optional, maintain brand consistency) */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #fff5ed;
+	--sl-color-accent: #ff6a00;
+	--sl-color-accent-high: #b34400;
+	--sl-color-bg: #ffffff;
+	--sl-color-bg-nav: rgba(255, 255, 255, 0.95);
+	--sl-color-bg-sidebar: rgba(255, 255, 255, 0.95);
+	--sl-color-bg-inline-code: rgba(255, 106, 0, 0.08);
+	--sl-color-text: #171717;
+	--sl-color-hairline: rgba(0, 0, 0, 0.1);
+}
+
+/* Selection styling */
+::selection {
+	background-color: rgba(255, 106, 0, 0.3);
+	color: #ffffff;
+}
+
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #2a2a2a;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #0b0b0b;
+}
+
+/* Background accent effects */
+body::before {
+	content: '';
+	position: fixed;
+	top: -10rem;
+	right: -10rem;
+	width: 40rem;
+	height: 40rem;
+	background: radial-gradient(circle, rgba(255, 106, 0, 0.15) 0%, transparent 70%);
+	pointer-events: none;
+	z-index: 0;
+	filter: blur(80px);
+}
+
+body::after {
+	content: '';
+	position: fixed;
+	bottom: -10rem;
+	left: -10rem;
+	width: 28rem;
+	height: 28rem;
+	background: radial-gradient(circle, rgba(179, 68, 0, 0.2) 0%, transparent 70%);
+	pointer-events: none;
+	z-index: 0;
+	filter: blur(80px);
+}
+
+/* Ensure content is above background effects */
+.page {
+	position: relative;
+	z-index: 1;
+}
+
+/* Logo styling */
+.site-title {
+	font-weight: 600;
+	letter-spacing: 0.025em;
+}
+
+/* Header styling */
+header {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+}
+
+/* Sidebar styling */
+.sidebar {
+	border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Button and link hover effects */
+a:hover,
+button:hover {
+	transition: all 0.2s ease;
+}
+
+/* Primary buttons/CTAs with brand glow */
+.sl-link-button[data-variant='primary'],
+.pagination-link[aria-current='page'] {
+	background-color: var(--brand-500);
+	color: #000000;
+	font-weight: 600;
+	box-shadow: var(--glow-shadow);
+	border: none;
+}
+
+.sl-link-button[data-variant='primary']:hover {
+	background-color: var(--brand-400);
+	box-shadow: var(--glow-shadow-strong);
+}
+
+/* Secondary buttons with border */
+.sl-link-button[data-variant='secondary'] {
+	border: 1px solid var(--brand-500);
+	background-color: rgba(255, 106, 0, 0.1);
+	color: var(--sl-color-text);
+}
+
+.sl-link-button[data-variant='secondary']:hover {
+	background-color: rgba(255, 106, 0, 0.2);
+	box-shadow: var(--glow-shadow);
+}
+
+/* Code blocks */
+pre {
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: var(--sl-border-radius);
+}
+
+/* Inline code */
+code {
+	background-color: var(--sl-color-bg-inline-code);
+	border: 1px solid rgba(255, 106, 0, 0.2);
+	border-radius: 0.375rem;
+	padding: 0.125rem 0.375rem;
+	font-size: 0.9em;
+}
+
+pre code {
+	border: none;
+	padding: 0;
+}
+
+/* Cards and content boxes */
+.sl-card,
+.card {
+	background-color: var(--gray-800);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 1rem;
+	transition: all 0.3s ease;
+}
+
+.sl-card:hover,
+.card:hover {
+	border-color: rgba(255, 106, 0, 0.3);
+	box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
+}
+
+/* Blockquotes */
+blockquote {
+	border-left: 4px solid var(--brand-500);
+	background-color: rgba(255, 106, 0, 0.05);
+	padding: 1rem 1.5rem;
+	border-radius: 0.5rem;
+	margin: 1.5rem 0;
+}
+
+/* Tables */
+table {
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: var(--sl-border-radius);
+	overflow: hidden;
+}
+
+th {
+	background-color: rgba(255, 106, 0, 0.1);
+	border-bottom: 2px solid var(--brand-500);
+}
+
+tr:hover {
+	background-color: rgba(255, 106, 0, 0.05);
+}
+
+/* Focus states */
+*:focus-visible {
+	outline: 2px solid var(--brand-500);
+	outline-offset: 2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+	body::before,
+	body::after {
+		width: 20rem;
+		height: 20rem;
+	}
+}
+
+/* Search */
+.search-input {
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.search-input:focus {
+	border-color: var(--brand-500);
+	box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+}
+
+/* Tags/badges */
+.tag,
+.badge {
+	background-color: rgba(255, 106, 0, 0.15);
+	border: 1px solid rgba(255, 106, 0, 0.3);
+	color: var(--brand-300);
+	border-radius: 9999px;
+	padding: 0.25rem 0.75rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+/* Headings with gradient accent option */
+h1.gradient-text,
+h2.gradient-text,
+h3.gradient-text {
+	background: linear-gradient(to right, var(--brand-400), var(--brand-500), var(--brand-300));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/* Improve readability */
+article {
+	line-height: 1.7;
+}
+
+article p {
+	margin-bottom: 1.25rem;
+}
+
+/* Hero section styling for landing pages */
+.hero {
+	padding: 4rem 2rem;
+	text-align: center;
+}
+
+.hero h1 {
+	font-size: clamp(2rem, 5vw, 3.5rem);
+	font-weight: 750;
+	line-height: 1.1;
+	margin-bottom: 1.5rem;
+}
+
+/* Footer */
+footer {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	margin-top: 4rem;
+}

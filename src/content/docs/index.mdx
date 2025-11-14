@@ -1,40 +1,46 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Welcome to DevCult Blog
+description: Technical insights, developer experience, and DevRel best practices from the DevCult team.
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  title: |
+    <span class="gradient-text">DevCult Blog</span>
+  tagline: Technical insights, developer experience, and DevRel best practices.
   image:
+    alt: DevCult Banner
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Read Latest Posts
+      link: /posts/welcome-to-devcult-blog/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+      variant: primary
+    - text: Visit DevCult.io
+      link: https://devcult.io
       icon: external
-      variant: minimal
+      variant: secondary
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## What We Write About
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<CardGrid>
+  <Card title="Developer Experience" icon="rocket">
+    Learn how to build delightful developer experiences that make contributors ship faster.
+  </Card>
+  <Card title="DevRel Strategy" icon="heart">
+    Discover best practices for growing thriving developer communities and ecosystems.
+  </Card>
+  <Card title="Technical Tutorials" icon="puzzle">
+    Deep-dive tutorials on modern development tools, frameworks, and workflows.
+  </Card>
+  <Card title="Open Source" icon="github">
+    Insights on building and maintaining successful open source projects.
+  </Card>
 </CardGrid>
+
+## About DevCult
+
+DevCult helps you craft delightful Developer Experience and DevRel systems — so contributors ship faster, docs sing, and your ecosystem grows.
+
+**Want to work with us?** [Get in touch](https://devcult.io#contact)
