@@ -1,313 +1,590 @@
-/* DevCult Brand Colors and Design System */
+/* ============================================
+   DevCult Brand Colors and Design System
+   ============================================ */
+
+/* Font Face Declarations - Coconat Font Family */
+@font-face {
+  font-family: "Coconat";
+  src: url("/fonts/Coconat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Coconat";
+  src: url("/fonts/Coconat-Demi.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Coconat";
+  src: url("/fonts/Coconat-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
+   ROOT VARIABLES - DARK THEME (DEFAULT)
+   ============================================ */
 :root {
-	/* Brand Colors */
-	--sl-color-accent-low: #1a0a00;
-	--sl-color-accent: #ff6a00;
-	--sl-color-accent-high: #ffa954;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #f9fafb;
-	--sl-color-gray-2: #e5e7eb;
-	--sl-color-gray-3: #9ca3af;
-	--sl-color-gray-4: #4b5563;
-	--sl-color-gray-5: #1f2937;
-	--sl-color-gray-6: #0f0f0f;
-	--sl-color-black: #000000;
+  /* Brand Colors */
+  --brand-300: #ffa954;
+  --brand-400: #ff8f26;
+  --brand-500: #ff6a00;
+  --brand-600: #e66000;
+  --brand-700: #b34400;
 
-	/* Brand-specific colors */
-	--brand-300: #ffa954;
-	--brand-400: #ff8f26;
-	--brand-500: #ff6a00;
-	--brand-700: #b34400;
-	--gray-800: #171717;
+  /* Starlight Color Overrides - Dark Theme */
+  --sl-color-accent-low: #1a0a00;
+  --sl-color-accent: #ff6a00;
+  --sl-color-accent-high: #ffa954;
 
-	/* Override Starlight defaults with DevCult branding */
-	--sl-color-bg: #000000;
-	--sl-color-bg-nav: rgba(0, 0, 0, 0.95);
-	--sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
-	--sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f9fafb;
+  --sl-color-gray-2: #e5e7eb;
+  --sl-color-gray-3: #9ca3af;
+  --sl-color-gray-4: #6b7280;
+  --sl-color-gray-5: #374151;
+  --sl-color-gray-6: #1f2937;
+  --sl-color-black: #000000;
 
-	--sl-color-text: #ffffff;
-	--sl-color-text-accent: #ff8f26;
+  --sl-color-bg: #000000;
+  --sl-color-bg-nav: rgba(0, 0, 0, 0.95);
+  --sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
+  --sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
 
-	--sl-color-hairline: rgba(255, 255, 255, 0.1);
-	--sl-color-hairline-light: rgba(255, 255, 255, 0.15);
+  --sl-color-text: #ffffff;
+  --sl-color-text-accent: #ff8f26;
 
-	/* Links */
-	--sl-color-text-link: #ff8f26;
-	--sl-color-text-link-hover: #ffa954;
+  --sl-color-hairline: rgba(255, 255, 255, 0.1);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.15);
+  --sl-color-hairline-shade: rgba(255, 255, 255, 0.2);
 
-	/* Shadows and glows */
-	--glow-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
-	--glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.5);
+  /* Links */
+  --sl-color-text-link: #ff8f26;
+  --sl-color-text-link-hover: #ffa954;
 
-	/* Border radius */
-	--sl-border-radius: 0.75rem;
+  /* Effects */
+  --glow-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+  --glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.5);
+
+  /* Border radius */
+  --sl-border-radius: 0.75rem;
+
+  /* Typography */
+  --sl-font-heading:
+    "Coconat", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-/* Dark theme overrides (default) */
-:root[data-theme='dark'] {
-	--sl-color-accent-low: #1a0a00;
-	--sl-color-accent: #ff6a00;
-	--sl-color-accent-high: #ffa954;
-	--sl-color-bg: #000000;
-	--sl-color-bg-nav: rgba(0, 0, 0, 0.95);
-	--sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
+/* ============================================
+   DARK THEME EXPLICIT
+   ============================================ */
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #1a0a00;
+  --sl-color-accent: #ff6a00;
+  --sl-color-accent-high: #ffa954;
+
+  --sl-color-bg: #000000;
+  --sl-color-bg-nav: rgba(0, 0, 0, 0.95);
+  --sl-color-bg-sidebar: rgba(0, 0, 0, 0.95);
+  --sl-color-bg-inline-code: rgba(255, 106, 0, 0.1);
+
+  --sl-color-text: #ffffff;
+  --sl-color-text-accent: #ff8f26;
+
+  --sl-color-hairline: rgba(255, 255, 255, 0.1);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.15);
+  --sl-color-hairline-shade: rgba(255, 255, 255, 0.2);
+
+  --sl-color-text-link: #ff8f26;
+  --sl-color-text-link-hover: #ffa954;
+
+  /* Cards and surfaces */
+  --card-bg: #171717;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover-border: rgba(255, 106, 0, 0.3);
+
+  /* Search */
+  --search-bg: rgba(0, 0, 0, 0.4);
+  --search-border: rgba(255, 255, 255, 0.15);
 }
 
-/* Light theme (optional, maintain brand consistency) */
-:root[data-theme='light'] {
-	--sl-color-accent-low: #fff5ed;
-	--sl-color-accent: #ff6a00;
-	--sl-color-accent-high: #b34400;
-	--sl-color-bg: #ffffff;
-	--sl-color-bg-nav: rgba(255, 255, 255, 0.95);
-	--sl-color-bg-sidebar: rgba(255, 255, 255, 0.95);
-	--sl-color-bg-inline-code: rgba(255, 106, 0, 0.08);
-	--sl-color-text: #171717;
-	--sl-color-hairline: rgba(0, 0, 0, 0.1);
+/* ============================================
+   LIGHT THEME - PROPERLY DESIGNED
+   ============================================ */
+:root[data-theme="light"] {
+  /* Accent colors - keep brand orange */
+  --sl-color-accent-low: #fff5ed;
+  --sl-color-accent: #ff6a00;
+  --sl-color-accent-high: #b34400;
+
+  /* Backgrounds - clean white base */
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: rgba(255, 255, 255, 0.95);
+  --sl-color-bg-sidebar: rgba(255, 255, 255, 0.95);
+  --sl-color-bg-inline-code: rgba(255, 106, 0, 0.08);
+
+  /* Text colors - dark on light */
+  --sl-color-text: #1f2937;
+  --sl-color-text-accent: #e66000;
+  --sl-color-gray-1: #1f2937;
+  --sl-color-gray-2: #374151;
+  --sl-color-gray-3: #6b7280;
+  --sl-color-gray-4: #9ca3af;
+  --sl-color-gray-5: #d1d5db;
+  --sl-color-gray-6: #f3f4f6;
+
+  /* Hairlines and borders - subtle dark lines */
+  --sl-color-hairline: rgba(0, 0, 0, 0.1);
+  --sl-color-hairline-light: rgba(0, 0, 0, 0.08);
+  --sl-color-hairline-shade: rgba(0, 0, 0, 0.15);
+
+  /* Links - darker orange for contrast */
+  --sl-color-text-link: #e66000;
+  --sl-color-text-link-hover: #b34400;
+
+  /* Cards and surfaces - light gray backgrounds */
+  --card-bg: #f9fafb;
+  --card-border: rgba(0, 0, 0, 0.1);
+  --card-hover-border: rgba(255, 106, 0, 0.4);
+
+  /* Search - light background */
+  --search-bg: #f9fafb;
+  --search-border: rgba(0, 0, 0, 0.15);
+
+  /* Shadows for light theme */
+  --glow-shadow: 0 0 20px rgba(255, 106, 0, 0.15);
+  --glow-shadow-strong: 0 0 30px rgba(255, 106, 0, 0.25);
 }
 
-/* Selection styling */
+/* ============================================
+   TYPOGRAPHY - COCONAT FOR HEADINGS
+   ============================================ */
+
+/* Apply Coconat to all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content h5,
+.sl-markdown-content h6 {
+  font-family:
+    "Coconat",
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Site title */
+.site-title {
+  font-family:
+    "Coconat",
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+/* Hero headings get extra weight */
+.hero h1,
+.hero h2 {
+  font-weight: 700;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
 ::selection {
-	background-color: rgba(255, 106, 0, 0.3);
-	color: #ffffff;
+  background-color: rgba(255, 106, 0, 0.3);
+  color: var(--sl-color-text);
 }
 
-/* Smooth scrolling */
+/* ============================================
+   SCROLLING & SCROLLBAR
+   ============================================ */
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Scrollbar - adjust for theme */
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 10px;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #0b0b0b;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
 ::-webkit-scrollbar {
-	width: 10px;
-	height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
-::-webkit-scrollbar-thumb {
-	background: #2a2a2a;
-	border-radius: 10px;
+/* ============================================
+   BACKGROUND EFFECTS
+   ============================================ */
+
+/* Dark theme background glows */
+:root[data-theme="dark"] body::before {
+  content: "";
+  position: fixed;
+  top: -10rem;
+  right: -10rem;
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(
+    circle,
+    rgba(255, 106, 0, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
 }
 
-::-webkit-scrollbar-track {
-	background: #0b0b0b;
+:root[data-theme="dark"] body::after {
+  content: "";
+  position: fixed;
+  bottom: -10rem;
+  left: -10rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(
+    circle,
+    rgba(179, 68, 0, 0.2) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
 }
 
-/* Background accent effects */
-body::before {
-	content: '';
-	position: fixed;
-	top: -10rem;
-	right: -10rem;
-	width: 40rem;
-	height: 40rem;
-	background: radial-gradient(circle, rgba(255, 106, 0, 0.15) 0%, transparent 70%);
-	pointer-events: none;
-	z-index: 0;
-	filter: blur(80px);
+/* Light theme - subtle background */
+:root[data-theme="light"] body::before {
+  content: "";
+  position: fixed;
+  top: -10rem;
+  right: -10rem;
+  width: 40rem;
+  height: 40rem;
+  background: radial-gradient(
+    circle,
+    rgba(255, 106, 0, 0.03) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
 }
 
-body::after {
-	content: '';
-	position: fixed;
-	bottom: -10rem;
-	left: -10rem;
-	width: 28rem;
-	height: 28rem;
-	background: radial-gradient(circle, rgba(179, 68, 0, 0.2) 0%, transparent 70%);
-	pointer-events: none;
-	z-index: 0;
-	filter: blur(80px);
+:root[data-theme="light"] body::after {
+  content: "";
+  position: fixed;
+  bottom: -10rem;
+  left: -10rem;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(
+    circle,
+    rgba(255, 106, 0, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+/* Mobile - smaller glows */
+@media (max-width: 768px) {
+  body::before,
+  body::after {
+    width: 20rem;
+    height: 20rem;
+  }
 }
 
 /* Ensure content is above background effects */
 .page {
-	position: relative;
-	z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
-/* Logo styling */
-.site-title {
-	font-weight: 600;
-	letter-spacing: 0.025em;
-}
-
-/* Header styling */
+/* ============================================
+   HEADER & NAVIGATION
+   ============================================ */
 header {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
-/* Sidebar styling */
-.sidebar {
-	border-right: 1px solid rgba(255, 255, 255, 0.1);
+:root[data-theme="dark"] header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Button and link hover effects */
+:root[data-theme="light"] header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+:root[data-theme="dark"] .sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .sidebar {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   BUTTONS & LINKS
+   ============================================ */
 a:hover,
 button:hover {
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-/* Primary buttons/CTAs with brand glow */
-.sl-link-button[data-variant='primary'],
-.pagination-link[aria-current='page'] {
-	background-color: var(--brand-500);
-	color: #000000;
-	font-weight: 600;
-	box-shadow: var(--glow-shadow);
-	border: none;
+/* Primary buttons with brand glow */
+.sl-link-button[data-variant="primary"],
+.pagination-link[aria-current="page"] {
+  background-color: var(--brand-500);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: var(--glow-shadow);
+  border: none;
 }
 
-.sl-link-button[data-variant='primary']:hover {
-	background-color: var(--brand-400);
-	box-shadow: var(--glow-shadow-strong);
+.sl-link-button[data-variant="primary"]:hover {
+  background-color: var(--brand-600);
+  box-shadow: var(--glow-shadow-strong);
 }
 
 /* Secondary buttons with border */
-.sl-link-button[data-variant='secondary'] {
-	border: 1px solid var(--brand-500);
-	background-color: rgba(255, 106, 0, 0.1);
-	color: var(--sl-color-text);
+.sl-link-button[data-variant="secondary"] {
+  border: 1px solid var(--brand-500);
+  background-color: rgba(255, 106, 0, 0.1);
+  color: var(--sl-color-text);
 }
 
-.sl-link-button[data-variant='secondary']:hover {
-	background-color: rgba(255, 106, 0, 0.2);
-	box-shadow: var(--glow-shadow);
+.sl-link-button[data-variant="secondary"]:hover {
+  background-color: rgba(255, 106, 0, 0.2);
+  box-shadow: var(--glow-shadow);
 }
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
 
 /* Code blocks */
-pre {
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: var(--sl-border-radius);
+:root[data-theme="dark"] pre {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--sl-border-radius);
+}
+
+:root[data-theme="light"] pre {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--sl-border-radius);
 }
 
 /* Inline code */
 code {
-	background-color: var(--sl-color-bg-inline-code);
-	border: 1px solid rgba(255, 106, 0, 0.2);
-	border-radius: 0.375rem;
-	padding: 0.125rem 0.375rem;
-	font-size: 0.9em;
+  background-color: var(--sl-color-bg-inline-code);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.9em;
+}
+
+:root[data-theme="dark"] code {
+  border: 1px solid rgba(255, 106, 0, 0.2);
+}
+
+:root[data-theme="light"] code {
+  border: 1px solid rgba(255, 106, 0, 0.15);
 }
 
 pre code {
-	border: none;
-	padding: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
 }
 
-/* Cards and content boxes */
+/* ============================================
+   CARDS
+   ============================================ */
 .sl-card,
 .card {
-	background-color: var(--gray-800);
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: 1rem;
-	transition: all 0.3s ease;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
 }
 
 .sl-card:hover,
 .card:hover {
-	border-color: rgba(255, 106, 0, 0.3);
-	box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
+  border-color: var(--card-hover-border);
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
 }
 
-/* Blockquotes */
+/* ============================================
+   BLOCKQUOTES
+   ============================================ */
 blockquote {
-	border-left: 4px solid var(--brand-500);
-	background-color: rgba(255, 106, 0, 0.05);
-	padding: 1rem 1.5rem;
-	border-radius: 0.5rem;
-	margin: 1.5rem 0;
+  border-left: 4px solid var(--brand-500);
+  background-color: rgba(255, 106, 0, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
 }
 
-/* Tables */
-table {
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	border-radius: var(--sl-border-radius);
-	overflow: hidden;
+/* ============================================
+   TABLES
+   ============================================ */
+:root[data-theme="dark"] table {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--sl-border-radius);
+  overflow: hidden;
+}
+
+:root[data-theme="light"] table {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--sl-border-radius);
+  overflow: hidden;
 }
 
 th {
-	background-color: rgba(255, 106, 0, 0.1);
-	border-bottom: 2px solid var(--brand-500);
+  background-color: rgba(255, 106, 0, 0.1);
+  border-bottom: 2px solid var(--brand-500);
 }
 
 tr:hover {
-	background-color: rgba(255, 106, 0, 0.05);
+  background-color: rgba(255, 106, 0, 0.05);
 }
 
-/* Focus states */
+/* ============================================
+   SEARCH
+   ============================================ */
+.search-input,
+site-search input {
+  border: 1px solid var(--search-border);
+  background-color: var(--search-bg);
+}
+
+.search-input:focus,
+site-search input:focus {
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
 *:focus-visible {
-	outline: 2px solid var(--brand-500);
-	outline-offset: 2px;
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-	body::before,
-	body::after {
-		width: 20rem;
-		height: 20rem;
-	}
-}
-
-/* Search */
-.search-input {
-	border: 1px solid rgba(255, 255, 255, 0.15);
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.search-input:focus {
-	border-color: var(--brand-500);
-	box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.2);
-}
-
-/* Tags/badges */
+/* ============================================
+   TAGS & BADGES
+   ============================================ */
 .tag,
 .badge {
-	background-color: rgba(255, 106, 0, 0.15);
-	border: 1px solid rgba(255, 106, 0, 0.3);
-	color: var(--brand-300);
-	border-radius: 9999px;
-	padding: 0.25rem 0.75rem;
-	font-size: 0.875rem;
-	font-weight: 500;
+  background-color: rgba(255, 106, 0, 0.15);
+  border: 1px solid rgba(255, 106, 0, 0.3);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-/* Headings with gradient accent option */
+:root[data-theme="dark"] .tag,
+:root[data-theme="dark"] .badge {
+  color: var(--brand-300);
+}
+
+:root[data-theme="light"] .tag,
+:root[data-theme="light"] .badge {
+  color: var(--brand-700);
+}
+
+/* ============================================
+   GRADIENT TEXT
+   ============================================ */
 h1.gradient-text,
 h2.gradient-text,
 h3.gradient-text {
-	background: linear-gradient(to right, var(--brand-400), var(--brand-500), var(--brand-300));
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    to right,
+    var(--brand-400),
+    var(--brand-500),
+    var(--brand-300)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Improve readability */
+/* ============================================
+   CONTENT READABILITY
+   ============================================ */
 article {
-	line-height: 1.7;
+  line-height: 1.7;
 }
 
 article p {
-	margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Hero section styling for landing pages */
+/* ============================================
+   HERO SECTION
+   ============================================ */
 .hero {
-	padding: 4rem 2rem;
-	text-align: center;
+  padding: 4rem 2rem;
+  text-align: center;
 }
 
 .hero h1 {
-	font-size: clamp(2rem, 5vw, 3.5rem);
-	font-weight: 750;
-	line-height: 1.1;
-	margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
-/* Footer */
-footer {
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	margin-top: 4rem;
+/* ============================================
+   FOOTER
+   ============================================ */
+:root[data-theme="dark"] footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
+}
+
+:root[data-theme="light"] footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 4rem;
 }
