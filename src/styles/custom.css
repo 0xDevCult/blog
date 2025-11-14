@@ -588,3 +588,75 @@ article p {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 4rem;
 }
+
+/* ============================================
+   LIGHT THEME FIXES - MORE SPECIFIC SELECTORS
+   ============================================ */
+
+/* Force headings to be dark in light theme */
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3,
+:root[data-theme="light"] h4,
+:root[data-theme="light"] h5,
+:root[data-theme="light"] h6,
+:root[data-theme="light"] .sl-markdown-content h1,
+:root[data-theme="light"] .sl-markdown-content h2,
+:root[data-theme="light"] .sl-markdown-content h3,
+:root[data-theme="light"] .sl-markdown-content h4,
+:root[data-theme="light"] .sl-markdown-content h5,
+:root[data-theme="light"] .sl-markdown-content h6,
+:root[data-theme="light"] .hero h1,
+:root[data-theme="light"] .hero h2 {
+	color: #1f2937 !important;
+}
+
+/* Force links to be dark orange in light theme */
+:root[data-theme="light"] a,
+:root[data-theme="light"] .sl-markdown-content a {
+	color: #e66000 !important;
+}
+
+/* Force link hovers to be darker orange (not white!) */
+:root[data-theme="light"] a:hover,
+:root[data-theme="light"] .sl-markdown-content a:hover {
+	color: #b34400 !important;
+}
+
+/* Fix search field in light theme */
+:root[data-theme="light"] site-search,
+:root[data-theme="light"] site-search input,
+:root[data-theme="light"] site-search button,
+:root[data-theme="light"] .pagefind-ui input,
+:root[data-theme="light"] .search-input {
+	background-color: #ffffff !important;
+	color: #1f2937 !important;
+	border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+:root[data-theme="light"] site-search input::placeholder {
+	color: #6b7280 !important;
+}
+
+/* Fix nav links in light theme */
+:root[data-theme="light"] nav a,
+:root[data-theme="light"] .sidebar a {
+	color: #374151 !important;
+}
+
+:root[data-theme="light"] nav a:hover,
+:root[data-theme="light"] .sidebar a:hover {
+	color: #e66000 !important;
+}
+
+/* Fix card titles in light theme */
+:root[data-theme="light"] .sl-card h2,
+:root[data-theme="light"] .sl-card h3,
+:root[data-theme="light"] .card-title {
+	color: #1f2937 !important;
+}
+
+/* Fix any remaining white text in light theme */
+:root[data-theme="light"] * {
+	--sl-color-white: #1f2937;
+}
