@@ -280,15 +280,101 @@ article p {
 header {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border-primary);
+  border-left: none !important;
 }
 
 :root[data-theme="light"] header {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/* Prevent header content from overlapping with fixed logo on desktop */
+@media (min-width: 50rem) {
+  header .header-center {
+    margin-left: 0 !important;
+  }
+
+  /* Add left padding to header when sidebar is visible to avoid logo overlap */
+  .header {
+    padding-left: 0 !important;
+  }
+}
+
+/* Remove all borders and gaps between header and sidebar */
+.sidebar,
+.sidebar-pane,
+nav.sidebar {
+  border-top: none !important;
+  border-left: none !important;
+  margin-top: 0 !important;
+}
+
+/* Make sidebar extend to top of viewport */
+nav.sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: var(--sl-sidebar-width) !important;
+  padding-top: 0 !important;
+  z-index: var(--sl-z-index-navbar) !important;
+}
+
+/* Adjust main content to account for sidebar */
+@media (min-width: 50em) {
+  .main-frame {
+    margin-left: 0 !important;
+  }
+}
+
 /* Sidebar */
 .sidebar {
   border-right: 1px solid var(--color-border-primary);
+}
+
+/* Hide sidebar border on mobile */
+@media (max-width: 50rem) {
+  .sidebar,
+  nav.sidebar {
+    border-right: none !important;
+  }
+}
+
+/* Make top-level sidebar item spacing thinner */
+.sidebar ul.top-level > li + li {
+  margin-top: 0.25rem !important;
+}
+
+/* Ensure sidebar nested item borders are consistent */
+.sidebar ul ul li {
+  border-inline-start-width: 1px !important;
+}
+
+/* Hide top-level spacing on mobile */
+@media (max-width: 50rem) {
+  .sidebar ul.top-level > li + li {
+    margin-top: 0 !important;
+  }
+
+  /* Make mobile menu footer border thinner */
+  .mobile-preferences {
+    border-top-width: 1px !important;
+  }
+}
+
+/* Hide sidebar scrollbar completely */
+.sidebar-pane,
+.sidebar-content,
+.sidebar {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.sidebar-pane::-webkit-scrollbar,
+.sidebar-content::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  display: none !important; /* Chrome/Safari/Opera */
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Footer */
@@ -371,25 +457,56 @@ button:hover {
   box-shadow: 0 0 15px rgba(255, 106, 0, 0.15);
 }
 
-/* Code blocks */
-pre {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border-primary);
+/* Code blocks - Expressive Code uses figure.frame wrapper */
+.expressive-code {
+  margin: 1.5rem 0;
 }
 
-/* Inline code */
-code {
+.expressive-code figure.frame {
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-brand-500);
+  border-top: 1px solid var(--color-border-primary);
+  border-right: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  background-color: rgba(255, 106, 0, 0.05);
+  overflow: hidden;
+  margin: 0;
+}
+
+.expressive-code pre {
+  border: none;
+  margin: 0;
+  padding: 1rem;
+  background: transparent !important;
+}
+
+/* Hide terminal window header (bash/shell commands) */
+/* The header with three dots is a terminal window decoration that's empty by default */
+.expressive-code figure.frame.is-terminal figcaption.header {
+  display: none;
+}
+
+/* Hide empty figcaptions for non-terminal blocks */
+.expressive-code figure.frame:not(.is-terminal) figcaption.header:empty {
+  display: none;
+}
+
+/* Style non-empty figcaptions for non-terminal blocks (when titles are provided) */
+.expressive-code figure.frame:not(.is-terminal) figcaption.header:not(:empty) {
+  background-color: var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-secondary);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Inline code (not in code blocks) */
+:not(pre) > code {
   background-color: var(--color-bg-inline-code);
   border-radius: var(--radius-sm);
   padding: 0.125rem 0.375rem;
   font-size: 0.9em;
   border: 1px solid var(--color-border-card-hover);
-}
-
-pre code {
-  border: none;
-  padding: 0;
-  background: transparent;
 }
 
 /* Blockquotes */
@@ -399,6 +516,16 @@ blockquote {
   padding: 1rem 1.5rem;
   border-radius: var(--radius-md);
   margin: 1.5rem 0;
+}
+
+/* Code blocks inside blockquotes */
+blockquote .expressive-code {
+  margin: 0.75rem 0;
+}
+
+blockquote .expressive-code figure.frame {
+  background-color: transparent;
+  border-left: 3px solid var(--color-brand-600);
 }
 
 /* Tables */

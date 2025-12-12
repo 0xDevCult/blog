@@ -1,0 +1,126 @@
+---
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+---
+
+<div class="header sl-flex">
+	<div class="sl-flex header-left">
+		<slot name="start" />
+	</div>
+
+	<div class="header-center sl-flex">
+		<div class="title-center">
+			<a href="/" class="site-title-link">
+				<span translate="no">DevCult Blog</span>
+			</a>
+		</div>
+	</div>
+
+	<div class="sl-flex header-right">
+		<div class="sl-hidden md:sl-flex right-group">
+			<Search {...Astro.props} />
+		</div>
+		<div class="sl-flex social-icons">
+			<SocialIcons {...Astro.props} />
+		</div>
+		<ThemeSelect {...Astro.props} />
+		<LanguageSelect {...Astro.props} />
+	</div>
+</div>
+
+<style>
+	.header {
+		gap: var(--sl-nav-gap);
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+	}
+
+	.header-left {
+		gap: var(--sl-nav-gap);
+		align-items: center;
+		flex: 0 0 auto;
+	}
+
+	.header-center {
+		flex: 1 1 auto;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.header-right {
+		gap: 1rem;
+		align-items: center;
+		flex: 0 0 auto;
+	}
+
+	.title-center {
+		font-family: var(--font-coconat);
+		font-size: 1.25rem;
+		font-weight: 600;
+		letter-spacing: 0.025em;
+	}
+
+	.site-title-link {
+		color: var(--color-text-primary);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.site-title-link:hover {
+		color: var(--color-brand-500);
+	}
+
+	.right-group {
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.social-icons {
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	/* On 800-1090px screens, prevent DevCult Blog from creeping under og-image */
+	@media (min-width: 50rem) and (max-width: 68.125rem) {
+		.header-center {
+			flex: 0 0 auto;
+			justify-content: flex-end;
+			margin-left: auto;
+		}
+
+		.title-center {
+			font-size: 1.125rem;
+		}
+	}
+
+	/* On tablet and mobile, ensure title doesn't overflow and sticks to left */
+	@media (max-width: 50rem) {
+		.title-center {
+			font-size: 1rem;
+		}
+
+		.header-center {
+			min-width: 0;
+			overflow: hidden;
+			justify-content: flex-start;
+			flex: 0 0 auto;
+		}
+
+		.site-title-link {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+
+	/* On very small screens, reduce title size further */
+	@media (max-width: 30rem) {
+		.title-center {
+			font-size: 0.875rem;
+		}
+	}
+</style>

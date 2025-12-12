@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
-import { getCollection } from "astro:content";
 
 // Mock the Astro content collection
 vi.mock("astro:content", () => ({

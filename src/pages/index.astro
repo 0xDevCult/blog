@@ -29,10 +29,22 @@ const latestPost = sortedPosts[0];
 // Redirect to the latest post - use 301 for permanent redirect
 if (latestPost) {
   // Remove file extension properly
-  const cleanPath = latestPost.id.replace(/\.mdx?$/, '');
-  return Astro.redirect(`/${cleanPath}/`, 301);
+  return Astro.redirect(`/${latestPost.id.replace(/\.mdx?$/, '')}/`, 301);
 }
 
 // Fallback if no posts exist
 return Astro.redirect('/posts/welcome-to-devcult-blog/', 301);
 ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Redirecting...</title>
+	<meta http-equiv="refresh" content="0;url=/posts/welcome-to-devcult-blog/">
+</head>
+<body>
+	<p>Redirecting to the latest post...</p>
+</body>
+</html>
