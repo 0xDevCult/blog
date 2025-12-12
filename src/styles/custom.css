@@ -1029,4 +1029,60 @@ site-search button:hover svg path {
   fill: #b34400 !important;
 }
 
+/* ============================================
+   13. SEARCH VISIBILITY
+   ============================================ */
+
+/* Force search button to always be visible */
+site-search {
+  display: flex !important;
+}
+
+site-search button {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Override any hidden/display classes on search */
+site-search[class*="hidden"],
+site-search[class*="sl-hidden"],
+.header-search[class*="hidden"],
+.header-search[class*="sl-hidden"] {
+  display: flex !important;
+}
+
+/* Force visibility on all breakpoints */
+@media (max-width: 50rem) {
+  site-search {
+    display: flex !important;
+  }
+  
+  site-search button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .header-search {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 50rem) {
+  site-search {
+    display: flex !important;
+  }
+  
+  site-search button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .header-search {
+    display: flex !important;
+  }
+}
+
 
