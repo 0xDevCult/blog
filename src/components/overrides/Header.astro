@@ -1,8 +1,8 @@
 ---
 import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
-import Search from '@astrojs/starlight/components/Search.astro';
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
-import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import ThemeSelect from './ThemeSelect.astro';
 ---
 
 <div class="header sl-flex">
@@ -18,15 +18,16 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		</div>
 	</div>
 
+	<div class="header-search-mobile">
+		<Search {...Astro.props} />
+	</div>
+
 	<div class="sl-flex header-right">
 		<div class="sl-hidden md:sl-flex right-group">
-			<Search {...Astro.props} />
-		</div>
-		<div class="sl-flex social-icons">
 			<SocialIcons {...Astro.props} />
+			<ThemeSelect {...Astro.props} />
+			<LanguageSelect {...Astro.props} />
 		</div>
-		<ThemeSelect {...Astro.props} />
-		<LanguageSelect {...Astro.props} />
 	</div>
 </div>
 
@@ -57,6 +58,10 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		flex: 0 0 auto;
 	}
 
+	.header-search-mobile {
+		display: none;
+	}
+
 	.title-center {
 		font-family: var(--font-coconat);
 		font-size: 1.25rem;
@@ -79,35 +84,28 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		align-items: center;
 	}
 
-	.social-icons {
-		gap: 0.5rem;
-		align-items: center;
-	}
-
-	/* On 800-1090px screens, prevent DevCult Blog from creeping under og-image */
+	/* On 800-1090px screens, stick DevCult Blog to the right and show search */
 	@media (min-width: 50rem) and (max-width: 68.125rem) {
 		.header-center {
 			flex: 0 0 auto;
-			justify-content: flex-end;
 			margin-left: auto;
 		}
 
 		.title-center {
 			font-size: 1.125rem;
 		}
+
+		.header-search-mobile {
+			display: flex;
+			align-items: center;
+			flex: 0 0 auto;
+		}
 	}
 
-	/* On tablet and mobile, ensure title doesn't overflow and sticks to left */
+	/* On tablet and mobile, ensure title stays centered */
 	@media (max-width: 50rem) {
 		.title-center {
 			font-size: 1rem;
-		}
-
-		.header-center {
-			min-width: 0;
-			overflow: hidden;
-			justify-content: flex-start;
-			flex: 0 0 auto;
 		}
 
 		.site-title-link {
@@ -115,6 +113,62 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+
+		.header-search-mobile {
+			display: flex;
+			align-items: center;
+			flex: 0 0 auto;
+		}
+	}
+
+	/* Style menu button with accent color */
+	.header-left :global(button) {
+		color: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover) {
+		color: var(--sl-color-accent-high) !important;
+	}
+
+	.header-left :global(button svg) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover svg) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	.header-left :global(button svg path) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover svg path) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	/* Style search icon with accent color */
+	.header-search-mobile :global(site-search button) {
+		color: var(--sl-color-accent) !important;
+	}
+
+	.header-search-mobile :global(site-search button:hover) {
+		color: var(--sl-color-accent-high) !important;
+	}
+
+	.header-search-mobile :global(site-search button svg) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-search-mobile :global(site-search button:hover svg) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	.header-search-mobile :global(site-search button svg path) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-search-mobile :global(site-search button:hover svg path) {
+		fill: var(--sl-color-accent-high) !important;
 	}
 
 	/* On very small screens, reduce title size further */

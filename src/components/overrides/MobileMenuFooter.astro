@@ -1,0 +1,30 @@
+---
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+---
+
+<div class="mobile-menu-footer">
+	<SocialIcons {...Astro.props} />
+</div>
+
+<style>
+	.mobile-menu-footer {
+		padding: 1rem;
+		border-top: 1px solid var(--sl-color-hairline);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.mobile-menu-footer :global(svg) {
+		width: 2rem;
+		height: 2rem;
+		--sl-icon-size: 2rem;
+	}
+
+	@media (min-width: 50rem) {
+		.mobile-menu-footer {
+			display: none;
+		}
+	}
+</style>

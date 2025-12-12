@@ -1,0 +1,62 @@
+---
+import Default from '@astrojs/starlight/components/TableOfContents.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+---
+
+<div class="toc-wrapper">
+	<div class="toc-search-above">
+		<Search {...Astro.props} />
+	</div>
+	<div class="toc-default">
+		<Default {...Astro.props} />
+	</div>
+</div>
+
+<style>
+	.toc-wrapper {
+		display: contents;
+	}
+
+	.toc-default {
+		display: contents;
+	}
+
+	.toc-search-above {
+		display: none;
+	}
+
+	/* Wide screens: show search above TOC */
+	@media (min-width: 68.125rem) {
+		.toc-wrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.toc-search-above {
+			display: block;
+			margin-bottom: 0.5rem;
+		}
+
+		.toc-default {
+			display: contents;
+		}
+	}
+
+	/* Medium screens (50rem to 68.125rem): show search above TOC */
+	@media (min-width: 50rem) and (max-width: 68.125rem) {
+		.toc-search-above {
+			display: block;
+			margin-bottom: 1rem;
+		}
+	}
+
+	/* Narrow screens: hide search (shown in page sidebar instead) */
+	@media (max-width: 50rem) {
+		.toc-search-above {
+			display: none;
+		}
+	}
+</style>
+
+
