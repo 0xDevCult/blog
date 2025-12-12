@@ -1,7 +1,7 @@
 ---
 title: The Developer Onboarding Checklist - 12 Things Every Project Needs
 description: Your project has 5 minutes to convince developers to stick around. Here's how to nail that critical first impression.
-date: 2025-11-14
+date: 2025-11-15
 author: DevCult Team
 tags:
   - developer-experience

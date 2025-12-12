@@ -1,7 +1,7 @@
 ---
 title: Writing Technical Documentation That Developers Actually Read
 description: Most documentation is ignored. Here's how to write docs that developers love, reference constantly, and actually follow.
-date: 2025-11-14
+date: 2025-11-16
 author: DevCult Team
 tags:
   - documentation
