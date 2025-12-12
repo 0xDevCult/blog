@@ -2,7 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 
-interface PostFrontmatter {
+export interface PostFrontmatter {
+  title?: string;
+  description?: string;
   date?: string;
   author?: string;
   tags?: string[];

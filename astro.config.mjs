@@ -17,6 +17,11 @@ export default defineConfig({
 				src: './src/assets/logo.svg',
 				replacesTitle: false,
 			},
+			components: {
+				Sidebar: './src/components/overrides/Sidebar.astro',
+				Header: './src/components/overrides/Header.astro',
+				ThemeSelect: './src/components/overrides/ThemeSelect.astro',
+			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/0xDevCult' },
 				{ icon: 'x.com', label: 'X / Twitter', href: 'https://x.com/0xDevCult' },

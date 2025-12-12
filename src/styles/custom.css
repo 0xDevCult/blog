@@ -280,15 +280,101 @@ article p {
 header {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border-primary);
+  border-left: none !important;
 }
 
 :root[data-theme="light"] header {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/* Prevent header content from overlapping with fixed logo on desktop */
+@media (min-width: 50rem) {
+  header .header-center {
+    margin-left: 0 !important;
+  }
+
+  /* Add left padding to header when sidebar is visible to avoid logo overlap */
+  .header {
+    padding-left: 0 !important;
+  }
+}
+
+/* Remove all borders and gaps between header and sidebar */
+.sidebar,
+.sidebar-pane,
+nav.sidebar {
+  border-top: none !important;
+  border-left: none !important;
+  margin-top: 0 !important;
+}
+
+/* Make sidebar extend to top of viewport */
+nav.sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: var(--sl-sidebar-width) !important;
+  padding-top: 0 !important;
+  z-index: var(--sl-z-index-navbar) !important;
+}
+
+/* Adjust main content to account for sidebar */
+@media (min-width: 50em) {
+  .main-frame {
+    margin-left: 0 !important;
+  }
+}
+
 /* Sidebar */
 .sidebar {
   border-right: 1px solid var(--color-border-primary);
+}
+
+/* Hide sidebar border on mobile */
+@media (max-width: 50rem) {
+  .sidebar,
+  nav.sidebar {
+    border-right: none !important;
+  }
+}
+
+/* Make top-level sidebar item spacing thinner */
+.sidebar ul.top-level > li + li {
+  margin-top: 0.25rem !important;
+}
+
+/* Ensure sidebar nested item borders are consistent */
+.sidebar ul ul li {
+  border-inline-start-width: 1px !important;
+}
+
+/* Hide top-level spacing on mobile */
+@media (max-width: 50rem) {
+  .sidebar ul.top-level > li + li {
+    margin-top: 0 !important;
+  }
+
+  /* Make mobile menu footer border thinner */
+  .mobile-preferences {
+    border-top-width: 1px !important;
+  }
+}
+
+/* Hide sidebar scrollbar completely */
+.sidebar-pane,
+.sidebar-content,
+.sidebar {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.sidebar-pane::-webkit-scrollbar,
+.sidebar-content::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  display: none !important; /* Chrome/Safari/Opera */
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Footer */
