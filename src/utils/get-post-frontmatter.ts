@@ -31,7 +31,7 @@ export function getPostFrontmatter(postId: string): PostFrontmatter {
     postsCache.set(postId, frontmatter);
     return frontmatter;
   } catch (error) {
-    console.error(`Failed to read frontmatter for ${postId}:`, error);
+    // Return empty object if file cannot be read (e.g., file doesn't exist)
     return {};
   }
 }
