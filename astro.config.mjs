@@ -70,6 +70,10 @@ export default defineConfig({
 					borderRadius: '0.75rem',
 					borderColor: 'rgba(255, 255, 255, 0.1)',
 				},
+				frames: {
+					showCopyToClipboardButton: true,
+					removeCommentsWhenCopyingTerminalFrames: true,
+				},
 			},
 		}),
 	],
