@@ -1,25 +1,38 @@
 ---
 import { getCollection } from 'astro:content';
+import { getPostFrontmatter } from '../utils/get-post-frontmatter.ts';
 
-// Get all posts and sort by date (newest first)
+// Get all posts
 const posts = await getCollection('docs', ({ id }) => {
   return id.startsWith('posts/');
 });
 
-const sortedPosts = posts.sort((a, b) => {
-  const dateA = (a.data as any).date ? new Date((a.data as any).date).getTime() : 0;
-  const dateB = (b.data as any).date ? new Date((b.data as any).date).getTime() : 0;
+// Enhance posts with frontmatter from markdown files
+const postsWithFrontmatter = posts.map((post) => {
+  const frontmatter = getPostFrontmatter(post.id);
+  return {
+    ...post,
+    frontmatter,
+  };
+});
+
+// Sort by date (newest first)
+const sortedPosts = postsWithFrontmatter.sort((a, b) => {
+  const dateA = a.frontmatter.date ? new Date(a.frontmatter.date).getTime() : 0;
+  const dateB = b.frontmatter.date ? new Date(b.frontmatter.date).getTime() : 0;
   return dateB - dateA;
 });
 
 // Get the latest post
 const latestPost = sortedPosts[0];
 
-// Redirect to the latest post
+// Redirect to the latest post - use 301 for permanent redirect
 if (latestPost) {
-  return Astro.redirect(`/${latestPost.id.replace('.md', '').replace('.mdx', '')}/`);
+  // Remove file extension properly
+  const cleanPath = latestPost.id.replace(/\.mdx?$/, '');
+  return Astro.redirect(`/${cleanPath}/`, 301);
 }
 
 // Fallback if no posts exist
-return Astro.redirect('/posts/welcome-to-devcult-blog/');
+return Astro.redirect('/posts/welcome-to-devcult-blog/', 301);
 ---
