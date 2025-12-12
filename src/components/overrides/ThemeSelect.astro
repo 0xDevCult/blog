@@ -59,16 +59,20 @@
 		});
 	}
 
-	// React to changes in system color scheme.
-	matchMedia(`(prefers-color-scheme: light)`).addEventListener('change', () => {
-		if (loadTheme() === 'auto') onThemeChange('auto');
-	});
-
 	class StarlightThemeSelect extends HTMLElement {
+		private mediaQuery: MediaQueryList;
+		private boundMediaHandler: () => void;
+
 		constructor() {
 			super();
 			const currentTheme = loadTheme();
 			onThemeChange(currentTheme);
+
+			// Setup media query listener with proper cleanup
+			this.mediaQuery = matchMedia('(prefers-color-scheme: light)');
+			this.boundMediaHandler = () => {
+				if (loadTheme() === 'auto') onThemeChange('auto');
+			};
 
 			// Update active button on initialization
 			const buttons = this.querySelectorAll('.theme-button');
@@ -83,6 +87,16 @@
 					});
 				}
 			});
+		}
+
+		connectedCallback() {
+			// Add listener when component is added to DOM
+			this.mediaQuery.addEventListener('change', this.boundMediaHandler);
+		}
+
+		disconnectedCallback() {
+			// Remove listener when component is removed from DOM
+			this.mediaQuery.removeEventListener('change', this.boundMediaHandler);
 		}
 	}
 	customElements.define('starlight-theme-select', StarlightThemeSelect);

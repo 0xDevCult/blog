@@ -1,0 +1,45 @@
+---
+/**
+ * Custom Head Component Override
+ *
+ * Extends Starlight's default <head> to include:
+ * - Schema.org structured data for SEO
+ * - Additional meta tags
+ */
+
+import Default from '@astrojs/starlight/components/Head.astro';
+import StructuredData from '../StructuredData.astro';
+
+const { entry } = Astro.props;
+
+// Get current URL
+const url = Astro.url.pathname;
+
+// Only add structured data for blog posts (not for other pages)
+const isBlogPost = entry && url.startsWith('/posts/') && !url.endsWith('/posts/');
+
+// Extract frontmatter data (only if entry exists)
+const title = entry?.data?.title || '';
+const description = entry?.data?.description || '';
+const date = entry?.data ? (entry.data as any).date : undefined;
+const author = entry?.data ? (entry.data as any).author : undefined;
+const tags = entry?.data ? (entry.data as any).tags : undefined;
+---
+
+<Default {...Astro.props}>
+  {isBlogPost && description && (
+    <StructuredData
+      title={title}
+      description={description}
+      date={date}
+      author={author}
+      tags={tags}
+      url={url}
+    />
+  )}
+
+  <!-- Additional canonical URL for SEO -->
+  <link rel="canonical" href={`https://blog.devcult.io${url}`} />
+
+  <slot />
+</Default>

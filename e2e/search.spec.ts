@@ -2,18 +2,17 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Search', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
   });
 
   test('should have search functionality', async ({ page }) => {
     // Search button should be visible at all times
     const searchButton = page.locator('[aria-label*="search" i]').first();
     await expect(searchButton).toBeVisible();
-    
+
     // Click the search button to open the modal
     await searchButton.click();
-    
+
     // Wait for the modal to appear and search input to be visible
     const searchInput = page.locator('input[type="search"], .pagefind-ui__search-input').first();
     await expect(searchInput).toBeVisible({ timeout: 10000 });

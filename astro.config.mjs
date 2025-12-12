@@ -3,9 +3,18 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
 
+// Environment variables with fallbacks
+const SITE_URL = process.env.PUBLIC_SITE_URL || 'https://blog.devcult.io';
+const GITHUB_ORG = process.env.GITHUB_ORG || '0xDevCult';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'blog';
+const GITHUB_EDIT_BRANCH = process.env.GITHUB_EDIT_BRANCH || 'main';
+const SOCIAL_GITHUB = process.env.SOCIAL_GITHUB || 'https://github.com/0xDevCult';
+const SOCIAL_TWITTER = process.env.SOCIAL_TWITTER || 'https://x.com/0xDevCult';
+const SOCIAL_LINKEDIN = process.env.SOCIAL_LINKEDIN || 'https://linkedin.com/company/devcult';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://blog.devcult.io',
+	site: SITE_URL,
 	vite: {
 		plugins: [tailwindcss()]
 	},
@@ -20,15 +29,16 @@ export default defineConfig({
 			components: {
 				Sidebar: './src/components/overrides/Sidebar.astro',
 				Header: './src/components/overrides/Header.astro',
+				Head: './src/components/overrides/Head.astro',
 				ThemeSelect: './src/components/overrides/ThemeSelect.astro',
 				MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',
 				TableOfContents: './src/components/overrides/TableOfContents.astro',
 				PageSidebar: './src/components/overrides/PageSidebar.astro',
 			},
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/0xDevCult' },
-				{ icon: 'x.com', label: 'X / Twitter', href: 'https://x.com/0xDevCult' },
-				{ icon: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/company/devcult' },
+				{ icon: 'github', label: 'GitHub', href: SOCIAL_GITHUB },
+				{ icon: 'x.com', label: 'X / Twitter', href: SOCIAL_TWITTER },
+				{ icon: 'linkedin', label: 'LinkedIn', href: SOCIAL_LINKEDIN },
 			],
 			customCss: [
 				'./src/styles/custom.css',
@@ -47,17 +57,49 @@ export default defineConfig({
 				},
 			},
 			editLink: {
-				baseUrl: 'https://github.com/0xDevCult/blog/edit/main/',
+				baseUrl: `https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/edit/${GITHUB_EDIT_BRANCH}/`,
 			},
 			lastUpdated: true,
 			pagination: true,
 			favicon: '/favicon.svg',
 			head: [
+				// Preload critical fonts for better performance (LCP)
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'preload',
+						href: '/fonts/Coconat-Regular.woff2',
+						as: 'font',
+						type: 'font/woff2',
+						crossorigin: 'anonymous',
+					},
+				},
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'preload',
+						href: '/fonts/Coconat-Demi.woff2',
+						as: 'font',
+						type: 'font/woff2',
+						crossorigin: 'anonymous',
+					},
+				},
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'preload',
+						href: '/fonts/Coconat-Bold.woff2',
+						as: 'font',
+						type: 'font/woff2',
+						crossorigin: 'anonymous',
+					},
+				},
+				// Open Graph metadata
 				{
 					tag: 'meta',
 					attrs: {
 						property: 'og:image',
-						content: 'https://blog.devcult.io/og-image.png',
+						content: `${SITE_URL}/og-image.png`,
 					},
 				},
 				{

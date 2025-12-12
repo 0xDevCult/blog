@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Navigation', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
   });
 
   test('should navigate between blog posts via sidebar', async ({ page }) => {
@@ -36,10 +35,10 @@ test.describe('Navigation', () => {
     const titleLink = page.locator('a:has-text("DevCult Blog")').first();
     await expect(titleLink).toBeVisible();
 
-    // Click should redirect to latest post
+    // Click should go to homepage (not redirect anymore)
     await titleLink.click();
     await page.waitForLoadState('networkidle');
-    expect(page.url()).toMatch(/\/posts\/.+/);
+    expect(page.url()).toMatch(/\/$|\/index/);
   });
 
   test('sidebar should be scrollable', async ({ page }) => {

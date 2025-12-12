@@ -2,9 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Blog Post', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to a blog post via the homepage redirect
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    // Navigate directly to a blog post
+    await page.goto('/posts/welcome-to-devcult-blog/');
   });
 
   test('should display blog post content', async ({ page }) => {

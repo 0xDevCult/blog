@@ -19,6 +19,11 @@ import ThemeSelect from './ThemeSelect.astro';
 </div>
 
 <style>
+  /* CSS Custom Properties */
+  :root {
+    --sidebar-logo-height: 300px;
+  }
+
   .sidebar-theme-selector-menu {
     display: none;
     padding: 1rem 0.5rem;
@@ -56,7 +61,7 @@ import ThemeSelect from './ThemeSelect.astro';
   }
 
   .sidebar-content-wrapper {
-    padding-top: 300px;
+    padding-top: var(--sidebar-logo-height);
     position: relative;
     z-index: 1;
   }

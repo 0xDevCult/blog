@@ -1,0 +1,11 @@
+# DevCult Blog - Robots Configuration
+# Allow all crawlers to index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://blog.devcult.io/sitemap-index.xml
+
+# Crawl delay (optional - prevents aggressive crawling)
+# Crawl-delay: 1

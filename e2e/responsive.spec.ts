@@ -3,8 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Responsive Design', () => {
   test('should display properly on desktop (1920x1080)', async ({ page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     // Check that sidebar is visible on desktop
     const sidebar = page.locator('nav.sidebar, aside').first();
@@ -17,8 +16,7 @@ test.describe('Responsive Design', () => {
 
   test('should display properly on tablet (768x1024)', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 1024 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     // Header should be visible
     const header = page.locator('header, .header').first();
@@ -31,8 +29,7 @@ test.describe('Responsive Design', () => {
 
   test('should display properly on mobile (375x667)', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     // Content should be visible (Starlight uses main or .sl-markdown-content)
     const mainContent = page.locator('main, .sl-markdown-content').first();
@@ -45,8 +42,7 @@ test.describe('Responsive Design', () => {
 
   test('should hide og-image on screens below 800px', async ({ page }) => {
     await page.setViewportSize({ width: 700, height: 800 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     // og-image should not be visible on small screens
     const ogImage = page.locator('.fixed-logo img');
@@ -56,8 +52,7 @@ test.describe('Responsive Design', () => {
 
   test('DevCult Blog title should be left-aligned with search', async ({ page }) => {
     await page.setViewportSize({ width: 400, height: 800 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     const title = page.locator('text=DevCult Blog').first();
     await expect(title).toBeVisible();
@@ -72,8 +67,7 @@ test.describe('Responsive Design', () => {
 
   test('DevCult Blog should not overlap with og-image on medium screens', async ({ page }) => {
     await page.setViewportSize({ width: 900, height: 900 });
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
 
     const title = page.locator('header').locator('text=DevCult Blog').first();
     const ogImage = page.locator('.fixed-logo img').first();
