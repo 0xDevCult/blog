@@ -62,9 +62,9 @@ test.describe('Responsive Design', () => {
     const title = page.locator('text=DevCult Blog').first();
     await expect(title).toBeVisible();
 
-    // Verify title and search are in same container (header-center)
+    // Verify title and search are in same container (title-center)
     const container = await title.evaluate((el) => {
-      return el.closest('.header-center') ? true : false;
+      return el.closest('.title-center') ? true : false;
     });
 
     expect(container).toBe(true);
