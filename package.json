@@ -10,7 +10,10 @@
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@playwright/test": "^1.57.0",
     "@vitest/ui": "^4.0.15",
     "typescript": "^5.7.2",
     "vitest": "^4.0.15"
