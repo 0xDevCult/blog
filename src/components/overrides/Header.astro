@@ -1,8 +1,8 @@
 ---
 import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
-import Search from '@astrojs/starlight/components/Search.astro';
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
-import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import ThemeSelect from './ThemeSelect.astro';
 ---
 
 <div class="header sl-flex">
@@ -10,23 +10,20 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		<slot name="start" />
 	</div>
 
-	<div class="header-center sl-flex">
-		<div class="title-center">
-			<a href="/" class="site-title-link">
-				<span translate="no">DevCult Blog</span>
-			</a>
-		</div>
-	</div>
-
 	<div class="sl-flex header-right">
-		<div class="sl-hidden md:sl-flex right-group">
-			<Search {...Astro.props} />
-		</div>
-		<div class="sl-flex social-icons">
+		<div class="right-group">
+			<div class="title-center">
+				<a href="/" class="site-title-link">
+					<span translate="no">DevCult Blog</span>
+				</a>
+			</div>
+			<div class="header-search">
+				<Search {...Astro.props} />
+			</div>
 			<SocialIcons {...Astro.props} />
+			<ThemeSelect {...Astro.props} />
+			<LanguageSelect {...Astro.props} />
 		</div>
-		<ThemeSelect {...Astro.props} />
-		<LanguageSelect {...Astro.props} />
 	</div>
 </div>
 
@@ -45,14 +42,15 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		flex: 0 0 auto;
 	}
 
-	.header-center {
-		flex: 1 1 auto;
-		justify-content: center;
+	.header-right {
+		display: flex;
+		gap: 1rem;
 		align-items: center;
+		flex: 0 0 auto;
 	}
 
-	.header-right {
-		gap: 1rem;
+	.header-search {
+		display: flex;
 		align-items: center;
 		flex: 0 0 auto;
 	}
@@ -62,6 +60,7 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 		font-size: 1.25rem;
 		font-weight: 600;
 		letter-spacing: 0.025em;
+		white-space: nowrap;
 	}
 
 	.site-title-link {
@@ -75,52 +74,79 @@ import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 	}
 
 	.right-group {
+		display: flex;
+		flex-direction: row;
 		gap: 1rem;
 		align-items: center;
+		flex: 0 0 auto;
 	}
 
-	.social-icons {
-		gap: 0.5rem;
-		align-items: center;
-	}
-
-	/* On 800-1090px screens, prevent DevCult Blog from creeping under og-image */
-	@media (min-width: 50rem) and (max-width: 68.125rem) {
-		.header-center {
-			flex: 0 0 auto;
-			justify-content: flex-end;
-			margin-left: auto;
-		}
-
-		.title-center {
-			font-size: 1.125rem;
-		}
-	}
-
-	/* On tablet and mobile, ensure title doesn't overflow and sticks to left */
+	/* Responsive adjustments */
 	@media (max-width: 50rem) {
 		.title-center {
 			font-size: 1rem;
 		}
 
-		.header-center {
-			min-width: 0;
-			overflow: hidden;
-			justify-content: flex-start;
-			flex: 0 0 auto;
-		}
-
-		.site-title-link {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+		/* Hide theme and language selectors in mobile header */
+		.right-group :global(starlight-theme-select),
+		.right-group :global([aria-label*="language" i]) {
+			display: none !important;
 		}
 	}
 
-	/* On very small screens, reduce title size further */
 	@media (max-width: 30rem) {
 		.title-center {
 			font-size: 0.875rem;
 		}
+	}
+
+	/* Style menu button with accent color */
+	.header-left :global(button) {
+		color: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover) {
+		color: var(--sl-color-accent-high) !important;
+	}
+
+	.header-left :global(button svg) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover svg) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	.header-left :global(button svg path) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-left :global(button:hover svg path) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	/* Style search icon with accent color */
+	.header-search :global(site-search button) {
+		color: var(--sl-color-accent) !important;
+	}
+
+	.header-search :global(site-search button:hover) {
+		color: var(--sl-color-accent-high) !important;
+	}
+
+	.header-search :global(site-search button svg) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-search :global(site-search button:hover svg) {
+		fill: var(--sl-color-accent-high) !important;
+	}
+
+	.header-search :global(site-search button svg path) {
+		fill: var(--sl-color-accent) !important;
+	}
+
+	.header-search :global(site-search button:hover svg path) {
+		fill: var(--sl-color-accent-high) !important;
 	}
 </style>

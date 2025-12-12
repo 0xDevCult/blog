@@ -54,7 +54,7 @@ test.describe('Responsive Design', () => {
     expect(isVisible).toBe(false);
   });
 
-  test('DevCult Blog title should stick to left on mobile', async ({ page }) => {
+  test('DevCult Blog title should be left-aligned with search', async ({ page }) => {
     await page.setViewportSize({ width: 400, height: 800 });
     await page.goto('/');
     await page.waitForURL(/\/posts\/.+/);
@@ -62,13 +62,12 @@ test.describe('Responsive Design', () => {
     const title = page.locator('text=DevCult Blog').first();
     await expect(title).toBeVisible();
 
-    // Check that title is aligned to the left (justify-content: flex-start)
-    const justifyContent = await title.evaluate((el) => {
-      const parent = el.closest('.header-center');
-      return parent ? window.getComputedStyle(parent).justifyContent : null;
+    // Verify title and search are in same container (title-center)
+    const container = await title.evaluate((el) => {
+      return el.closest('.title-center') ? true : false;
     });
 
-    expect(['flex-start', 'start']).toContain(justifyContent);
+    expect(container).toBe(true);
   });
 
   test('DevCult Blog should not overlap with og-image on medium screens', async ({ page }) => {

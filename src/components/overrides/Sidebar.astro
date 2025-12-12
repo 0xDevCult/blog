@@ -1,5 +1,6 @@
 ---
 import Default from '@astrojs/starlight/components/Sidebar.astro';
+import ThemeSelect from './ThemeSelect.astro';
 ---
 
 <!-- Fixed logo in top-left corner -->
@@ -9,10 +10,28 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
 
 <!-- Default Starlight Sidebar with spacing for logo -->
 <div class="sidebar-content-wrapper">
+  <!-- Theme selector at the top of sidebar menu -->
+  <div class="sidebar-theme-selector-menu">
+    <ThemeSelect {...Astro.props} />
+  </div>
+  
   <Default {...Astro.props}><slot /></Default>
 </div>
 
 <style>
+  .sidebar-theme-selector-menu {
+    display: none;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--color-border-primary);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-theme-selector-menu :global(.theme-select-wrapper) {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
   .fixed-logo {
     position: fixed;
     top: 0.75rem;
@@ -43,6 +62,10 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
   }
 
   @media (max-width: 50rem) {
+    .sidebar-theme-selector-menu {
+      display: block;
+    }
+
     .fixed-logo {
       display: none;
     }
@@ -52,3 +75,4 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
     }
   }
 </style>
+

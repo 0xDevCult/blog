@@ -308,6 +308,57 @@ nav.sidebar {
   margin-top: 0 !important;
 }
 
+/* Header button styling - menu and search icons */
+button[aria-label="Menu"] {
+  color: var(--sl-color-accent) !important;
+}
+
+button[aria-label="Menu"]:hover {
+  color: var(--sl-color-accent-high) !important;
+}
+
+button[aria-label="Menu"] svg {
+  fill: var(--sl-color-accent) !important;
+}
+
+button[aria-label="Menu"]:hover svg {
+  fill: var(--sl-color-accent-high) !important;
+}
+
+button[aria-label="Menu"] svg path {
+  fill: var(--sl-color-accent) !important;
+}
+
+button[aria-label="Menu"]:hover svg path {
+  fill: var(--sl-color-accent-high) !important;
+}
+
+/* Target search button */
+site-search button {
+  color: var(--sl-color-accent) !important;
+}
+
+site-search button:hover {
+  color: var(--sl-color-accent-high) !important;
+}
+
+site-search button svg {
+  fill: var(--sl-color-accent) !important;
+}
+
+site-search button:hover svg {
+  fill: var(--sl-color-accent-high) !important;
+}
+
+/* Fallback for all header buttons */
+header button[aria-label] {
+  color: var(--sl-color-accent) !important;
+}
+
+header button[aria-label]:hover {
+  color: var(--sl-color-accent-high) !important;
+}
+
 /* Make sidebar extend to top of viewport */
 nav.sidebar {
   position: fixed !important;
@@ -331,11 +382,47 @@ nav.sidebar {
   border-right: 1px solid var(--color-border-primary);
 }
 
+/* Sidebar group labels/titles should use Coconat font */
+.sidebar details > summary,
+.sidebar .top-level > li > details > summary,
+.sidebar [role="button"],
+.sidebar .group-label,
+.sidebar .item-label,
+.sidebar .large {
+  font-family: var(--font-coconat);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
 /* Hide sidebar border on mobile */
 @media (max-width: 50rem) {
   .sidebar,
   nav.sidebar {
     border-right: none !important;
+  }
+
+  /* Allow clicks to pass through closed sidebar on the right side */
+  nav.sidebar {
+    max-width: var(--sl-sidebar-width);
+    pointer-events: none;
+  }
+
+  /* Re-enable pointer events for interactive elements */
+  nav.sidebar .sidebar-pane,
+  nav.sidebar .sidebar-content,
+  nav.sidebar button,
+  nav.sidebar a,
+  nav.sidebar [role="button"] {
+    pointer-events: auto;
+  }
+
+  /* When sidebar is closed, only allow clicks on the left side */
+  nav.sidebar:not([aria-expanded="true"]) {
+    pointer-events: none;
+  }
+
+  nav.sidebar:not([aria-expanded="true"]) .sidebar-pane {
+    pointer-events: none;
   }
 }
 
@@ -804,3 +891,198 @@ button.sl-link-button[data-variant="primary"] {
     height: 20rem;
   }
 }
+
+/* Mobile TOC dropdown search visibility */
+@media (max-width: 50rem) {
+  /* Force dropdown to expand for search visibility */
+  #starlight__mobile-toc .dropdown {
+    max-height: none !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure search container displays properly */
+  .toc-search-injected {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    pointer-events: auto !important;
+    width: 100% !important;
+    margin: 0.5rem 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure all children of search container are visible */
+  .toc-search-injected * {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    pointer-events: auto !important;
+  }
+
+  /* Starlight Search specific visibility */
+  .toc-search-injected .Search {
+    width: 100% !important;
+  }
+
+  /* Input and button visibility within search */
+  .toc-search-injected input,
+  .toc-search-injected button,
+  .toc-search-injected [type="search"] {
+    display: block !important;
+    visibility: visible !important;
+  }
+}
+
+/* ============================================
+   ULTIMATE HEADER BUTTON COLOR OVERRIDE
+   ============================================ */
+
+/* Menu button background - accent color */
+button[aria-label="Menu"],
+button[aria-controls="starlight__sidebar"] {
+  background-color: var(--sl-color-accent) !important;
+  color: #000000 !important;
+}
+
+button[aria-label="Menu"]:hover,
+button[aria-controls="starlight__sidebar"]:hover {
+  background-color: var(--sl-color-accent-high) !important;
+  color: #000000 !important;
+}
+
+/* Menu icon paths - black */
+button[aria-label="Menu"] svg path,
+button[aria-controls="starlight__sidebar"] svg path {
+  fill: #000000 !important;
+}
+
+button[aria-label="Menu"]:hover svg path,
+button[aria-controls="starlight__sidebar"]:hover svg path {
+  fill: #000000 !important;
+}
+
+/* Dark theme menu button */
+:root[data-theme="dark"] button[aria-label="Menu"],
+:root[data-theme="dark"] button[aria-controls="starlight__sidebar"] {
+  background-color: #ff6a00 !important;
+  color: #000000 !important;
+}
+
+:root[data-theme="dark"] button[aria-label="Menu"]:hover,
+:root[data-theme="dark"] button[aria-controls="starlight__sidebar"]:hover {
+  background-color: #ffa954 !important;
+}
+
+:root[data-theme="dark"] button[aria-label="Menu"] svg path,
+:root[data-theme="dark"] button[aria-controls="starlight__sidebar"] svg path {
+  fill: #000000 !important;
+}
+
+/* Light theme menu button */
+:root[data-theme="light"] button[aria-label="Menu"],
+:root[data-theme="light"] button[aria-controls="starlight__sidebar"] {
+  background-color: #ff6a00 !important;
+  color: #000000 !important;
+}
+
+:root[data-theme="light"] button[aria-label="Menu"]:hover,
+:root[data-theme="light"] button[aria-controls="starlight__sidebar"]:hover {
+  background-color: #b34400 !important;
+}
+
+:root[data-theme="light"] button[aria-label="Menu"] svg path,
+:root[data-theme="light"] button[aria-controls="starlight__sidebar"] svg path {
+  fill: #000000 !important;
+}
+
+/* Search button styling - icon only, no background */
+site-search button svg {
+  color: var(--sl-color-accent) !important;
+}
+
+site-search button svg path {
+  fill: var(--sl-color-accent) !important;
+}
+
+site-search button:hover svg,
+site-search button:hover svg path {
+  fill: var(--sl-color-accent-high) !important;
+}
+
+:root[data-theme="dark"] site-search button svg path {
+  fill: #ff6a00 !important;
+}
+
+:root[data-theme="dark"] site-search button:hover svg path {
+  fill: #ffa954 !important;
+}
+
+:root[data-theme="light"] site-search button svg path {
+  fill: #ff6a00 !important;
+}
+
+:root[data-theme="light"] site-search button:hover svg path {
+  fill: #b34400 !important;
+}
+
+/* ============================================
+   13. SEARCH VISIBILITY
+   ============================================ */
+
+/* Force search button to always be visible */
+site-search {
+  display: flex !important;
+}
+
+site-search button {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Override any hidden/display classes on search */
+site-search[class*="hidden"],
+site-search[class*="sl-hidden"],
+.header-search[class*="hidden"],
+.header-search[class*="sl-hidden"] {
+  display: flex !important;
+}
+
+/* Force visibility on all breakpoints */
+@media (max-width: 50rem) {
+  site-search {
+    display: flex !important;
+  }
+  
+  site-search button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .header-search {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 50rem) {
+  site-search {
+    display: flex !important;
+  }
+  
+  site-search button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .header-search {
+    display: flex !important;
+  }
+}
+
+

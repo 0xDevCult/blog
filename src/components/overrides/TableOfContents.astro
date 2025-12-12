@@ -1,0 +1,21 @@
+---
+import Default from '@astrojs/starlight/components/TableOfContents.astro';
+---
+
+<div class="toc-wrapper">
+	<div class="toc-default">
+		<Default {...Astro.props} />
+	</div>
+</div>
+
+<style>
+	.toc-wrapper {
+		display: contents;
+	}
+
+	.toc-default {
+		display: contents;
+	}
+</style>
+
+

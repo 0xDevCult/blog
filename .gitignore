@@ -28,6 +28,6 @@ pnpm-debug.log*
 # Cache
 .cache/
 
-# Playwright
-playwright-report/
+# Test artifacts
 test-results/
+playwright-report/

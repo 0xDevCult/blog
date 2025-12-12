@@ -1,0 +1,43 @@
+---
+import Default from '@astrojs/starlight/components/PageSidebar.astro';
+---
+
+<div class="page-sidebar-wrapper">
+	<Default {...Astro.props} />
+</div>
+
+<style>
+	.page-sidebar-wrapper {
+		display: contents;
+	}
+
+	/* Force table of contents to display on narrow screens */
+	@media (max-width: 50rem) {
+		:global(.sl-toc-wrapper) {
+			display: block !important;
+		}
+
+		:global(.sl-toc-wrapper details) {
+			display: block !important;
+		}
+
+		:global(.sl-toc-wrapper details[open]) {
+			display: block !important;
+		}
+
+		:global(.sl-toc-wrapper details[open] summary ~ *) {
+			display: block !important;
+			visibility: visible !important;
+		}
+
+		:global(.sl-toc-wrapper ul) {
+			display: block !important;
+			visibility: visible !important;
+		}
+
+		:global(.sl-toc-wrapper li) {
+			display: list-item !important;
+			visibility: visible !important;
+		}
+	}
+</style>

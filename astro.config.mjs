@@ -21,6 +21,9 @@ export default defineConfig({
 				Sidebar: './src/components/overrides/Sidebar.astro',
 				Header: './src/components/overrides/Header.astro',
 				ThemeSelect: './src/components/overrides/ThemeSelect.astro',
+				MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',
+				TableOfContents: './src/components/overrides/TableOfContents.astro',
+				PageSidebar: './src/components/overrides/PageSidebar.astro',
 			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/0xDevCult' },
