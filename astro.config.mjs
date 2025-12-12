@@ -2,9 +2,13 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // Environment variables with fallbacks
-const SITE_URL = process.env.PUBLIC_SITE_URL || 'https://blog.devcult.io';
+// Use different URLs for dev vs production
+const isDev = process.env.NODE_ENV === 'development';
+const SITE_URL =
+	process.env.PUBLIC_SITE_URL || (isDev ? 'http://localhost:4321' : 'https://blog.devcult.io');
 const GITHUB_ORG = process.env.GITHUB_ORG || '0xDevCult';
 const GITHUB_REPO = process.env.GITHUB_REPO || 'blog';
 const GITHUB_EDIT_BRANCH = process.env.GITHUB_EDIT_BRANCH || 'main';
@@ -15,13 +19,20 @@ const SOCIAL_LINKEDIN = process.env.SOCIAL_LINKEDIN || 'https://linkedin.com/com
 // https://astro.build/config
 export default defineConfig({
 	site: SITE_URL,
+	image: {
+		service: {
+			entrypoint: 'astro/assets/services/sharp',
+		},
+	},
 	vite: {
-		plugins: [tailwindcss()]
+		plugins: [tailwindcss()],
 	},
 	integrations: [
+		sitemap(),
 		starlight({
 			title: 'DevCult Blog',
-			description: 'Technical insights, developer experience, and DevRel best practices from the DevCult team.',
+			description:
+				'Technical insights, developer experience, and DevRel best practices from the DevCult team.',
 			logo: {
 				src: './src/assets/logo.svg',
 				replacesTitle: false,
@@ -34,15 +45,14 @@ export default defineConfig({
 				MobileMenuFooter: './src/components/overrides/MobileMenuFooter.astro',
 				TableOfContents: './src/components/overrides/TableOfContents.astro',
 				PageSidebar: './src/components/overrides/PageSidebar.astro',
+				PageFrame: './src/components/overrides/PageFrame.astro',
 			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: SOCIAL_GITHUB },
 				{ icon: 'x.com', label: 'X / Twitter', href: SOCIAL_TWITTER },
 				{ icon: 'linkedin', label: 'LinkedIn', href: SOCIAL_LINKEDIN },
 			],
-			customCss: [
-				'./src/styles/custom.css',
-			],
+			customCss: ['./src/styles/custom.css'],
 			sidebar: [
 				{
 					label: 'Blog Posts',

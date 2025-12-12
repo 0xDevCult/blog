@@ -8,36 +8,54 @@
 import { defineMiddleware } from 'astro:middleware';
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const response = await next();
+	const response = await next();
 
-  // Clone the response to modify headers
-  const newResponse = response.clone();
+	// Clone the response to modify headers
+	const newResponse = response.clone();
 
-  // Content Security Policy
-  // Note: 'unsafe-inline' is needed for Starlight's inline styles and scripts
-  // In production, consider using nonces or hashes for better security
-  const csp = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline'", // Starlight uses inline scripts
-    "style-src 'self' 'unsafe-inline'", // Starlight uses inline styles
-    "img-src 'self' data: https:",
-    "font-src 'self' data:",
-    "connect-src 'self'",
-    "frame-ancestors 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-  ].join('; ');
+	// Content Security Policy
+	// Note: 'unsafe-inline' is needed for Starlight's inline styles and scripts
+	// TODO: Replace with nonces for better security
+	const csp = [
+		"default-src 'self'",
+		"script-src 'self' 'unsafe-inline' https://plausible.io", // Starlight + Plausible Analytics
+		"style-src 'self' 'unsafe-inline'", // Starlight uses inline styles
+		"img-src 'self' data: https:",
+		"font-src 'self' data:",
+		"connect-src 'self' https://plausible.io", // Allow analytics requests
+		"frame-ancestors 'none'",
+		"base-uri 'self'",
+		"form-action 'self'",
+		'upgrade-insecure-requests',
+		// Report violations in report-only mode (optional)
+		// Uncomment and configure when you have a CSP reporting endpoint
+		// "report-uri /csp-report",
+	].join('; ');
 
-  newResponse.headers.set('Content-Security-Policy', csp);
+	newResponse.headers.set('Content-Security-Policy', csp);
 
-  // Additional security headers
-  newResponse.headers.set('X-Frame-Options', 'DENY');
-  newResponse.headers.set('X-Content-Type-Options', 'nosniff');
-  newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  newResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+	// Additional security headers
+	newResponse.headers.set('X-Frame-Options', 'DENY');
+	newResponse.headers.set('X-Content-Type-Options', 'nosniff');
+	newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+	newResponse.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
+	newResponse.headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+	newResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+	newResponse.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
 
-  // HSTS (Strict-Transport-Security) - uncomment if using HTTPS
-  // newResponse.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+	// Expanded Permissions Policy
+	newResponse.headers.set(
+		'Permissions-Policy',
+		'camera=(), microphone=(), geolocation=(), payment=(), usb=(), ' +
+			'magnetometer=(), gyroscope=(), accelerometer=()'
+	);
 
-  return newResponse;
+	// HSTS (Strict-Transport-Security) for HTTPS enforcement
+	// Enabled for GitHub Pages (serves over HTTPS)
+	newResponse.headers.set(
+		'Strict-Transport-Security',
+		'max-age=63072000; includeSubDomains; preload'
+	);
+
+	return newResponse;
 });

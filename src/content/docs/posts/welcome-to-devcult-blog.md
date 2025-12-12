@@ -80,4 +80,4 @@ We're on a mission to raise the bar for developer experiences everywhere. If you
 
 ---
 
-*Welcome to the DevCult community. Let's build something great together.*
+_Welcome to the DevCult community. Let's build something great together._

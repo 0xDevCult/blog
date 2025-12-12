@@ -34,7 +34,7 @@ touch src/content/docs/posts/my-first-post.md
 
 Add this content:
 
-```markdown
+````markdown
 ---
 title: My First Blog Post
 description: Learning how to write blog posts for DevCult
@@ -61,7 +61,7 @@ console.log(greeting);
 - How to create a blog post
 - Using frontmatter
 - Adding code examples
-```
+````
 
 Save the file and check http://localhost:4321/posts/my-first-post/ - your post is live!
 

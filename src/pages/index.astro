@@ -5,317 +5,322 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 
 // Get all posts
 const posts = await getCollection('docs', ({ id }) => {
-  return id.startsWith('posts/');
+	return id.startsWith('posts/');
 });
 
 // Enhance posts with frontmatter from markdown files
 const postsWithFrontmatter = posts.map((post) => {
-  const frontmatter = getPostFrontmatter(post.id);
-  return {
-    ...post,
-    data: {
-      ...post.data,
-      ...frontmatter,
-    },
-  };
+	const frontmatter = getPostFrontmatter(post.id);
+	return {
+		...post,
+		data: {
+			...post.data,
+			...frontmatter,
+		},
+	};
 });
 
 // Sort by date (newest first)
 const sortedPosts = postsWithFrontmatter.sort((a, b) => {
-  const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
-  const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
-  return dateB - dateA;
+	const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+	const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+	return dateB - dateA;
 });
 
 // Format date helper
 function formatDate(date: string | undefined): string {
-  if (!date) return 'No date';
-  const d = new Date(date);
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+	if (!date) return 'No date';
+	const d = new Date(date);
+	return d.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
 }
 
 // Get slug from post id
 function getSlug(id: string): string {
-  return id.replace(/\.mdx?$/, '');
+	return id.replace(/\.mdx?$/, '');
 }
 ---
 
 <StarlightPage
-  frontmatter={{
-    title: 'DevCult Blog',
-    description: 'Technical insights, developer experience, and DevRel best practices from the DevCult team.',
-    template: 'splash',
-  }}
+	frontmatter={{
+		title: 'DevCult Blog',
+		description:
+			'Technical insights, developer experience, and DevRel best practices from the DevCult team.',
+		template: 'splash',
+	}}
 >
-  <div class="blog-landing">
-    <!-- Hero Section -->
-    <div class="hero-section">
-      <h1 class="hero-title gradient-text">DevCult Blog</h1>
-      <p class="hero-description">
-        Technical insights, developer experience, and DevRel best practices from the DevCult team.
-      </p>
-      <div class="hero-stats">
-        <span class="stat-item">{sortedPosts.length} {sortedPosts.length === 1 ? 'Post' : 'Posts'}</span>
-        <span class="stat-divider">•</span>
-        <span class="stat-item">Weekly Updates</span>
-        <span class="stat-divider">•</span>
-        <span class="stat-item">DevEx & DevRel</span>
-      </div>
-    </div>
+	<div class="blog-landing">
+		<!-- Hero Section -->
+		<div class="hero-section">
+			<h1 class="hero-title gradient-text">DevCult Blog</h1>
+			<p class="hero-description">
+				Technical insights, developer experience, and DevRel best practices from the DevCult team.
+			</p>
+			<div class="hero-stats">
+				<span class="stat-item"
+					>{sortedPosts.length} {sortedPosts.length === 1 ? 'Post' : 'Posts'}</span
+				>
+				<span class="stat-divider">•</span>
+				<span class="stat-item">Weekly Updates</span>
+				<span class="stat-divider">•</span>
+				<span class="stat-item">DevEx & DevRel</span>
+			</div>
+		</div>
 
-    <!-- Blog Posts Grid -->
-    <div class="posts-grid">
-      {sortedPosts.map((post) => (
-        <article class="post-card">
-          <a href={`/${getSlug(post.id)}/`} class="post-link">
-            <div class="post-header">
-              {post.data.tags && post.data.tags.length > 0 && (
-                <div class="post-tags">
-                  {post.data.tags.slice(0, 3).map((tag: string) => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              )}
-            </div>
-            <h2 class="post-title">{post.data.title}</h2>
-            <p class="post-description">{post.data.description}</p>
-            <div class="post-meta">
-              {post.data.date && (
-                <time datetime={post.data.date} class="post-date">
-                  {formatDate(post.data.date)}
-                </time>
-              )}
-              {post.data.author && (
-                <>
-                  <span class="meta-divider">•</span>
-                  <span class="post-author">{post.data.author}</span>
-                </>
-              )}
-            </div>
-            <div class="post-footer">
-              <span class="read-more">
-                Read article →
-              </span>
-            </div>
-          </a>
-        </article>
-      ))}
-    </div>
+		<!-- Blog Posts Grid -->
+		<div class="posts-grid">
+			{
+				sortedPosts.map((post) => (
+					<article class="post-card">
+						<a href={`/${getSlug(post.id)}/`} class="post-link">
+							<div class="post-header">
+								{post.data.tags && post.data.tags.length > 0 && (
+									<div class="post-tags">
+										{post.data.tags.slice(0, 3).map((tag: string) => (
+											<span class="tag">{tag}</span>
+										))}
+									</div>
+								)}
+							</div>
+							<h2 class="post-title">{post.data.title}</h2>
+							<p class="post-description">{post.data.description}</p>
+							<div class="post-meta">
+								{post.data.date && (
+									<time datetime={post.data.date} class="post-date">
+										{formatDate(post.data.date)}
+									</time>
+								)}
+								{post.data.author && (
+									<>
+										<span class="meta-divider">•</span>
+										<span class="post-author">{post.data.author}</span>
+									</>
+								)}
+							</div>
+							<div class="post-footer">
+								<span class="read-more">Read article →</span>
+							</div>
+						</a>
+					</article>
+				))
+			}
+		</div>
 
-    <!-- Empty State -->
-    {sortedPosts.length === 0 && (
-      <div class="empty-state">
-        <p>No blog posts yet. Check back soon!</p>
-      </div>
-    )}
-  </div>
+		<!-- Empty State -->
+		{
+			sortedPosts.length === 0 && (
+				<div class="empty-state">
+					<p>No blog posts yet. Check back soon!</p>
+				</div>
+			)
+		}
+	</div>
 </StarlightPage>
 
 <style>
-  .blog-landing {
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
+	.blog-landing {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+	}
 
-  /* Hero Section */
-  .hero-section {
-    text-align: center;
-    margin-bottom: 4rem;
-    padding: 3rem 1rem;
-  }
+	/* Hero Section */
+	.hero-section {
+		text-align: center;
+		margin-bottom: 4rem;
+		padding: 3rem 1rem;
+	}
 
-  .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-  }
+	.hero-title {
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 700;
+		margin-bottom: 1rem;
+		line-height: 1.1;
+	}
 
-  .gradient-text {
-    background: linear-gradient(
-      to right,
-      var(--color-brand-400),
-      var(--color-brand-500),
-      var(--color-brand-300)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+	.gradient-text {
+		background: linear-gradient(
+			to right,
+			var(--color-brand-400),
+			var(--color-brand-500),
+			var(--color-brand-300)
+		);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 
-  .hero-description {
-    font-size: 1.25rem;
-    color: var(--color-text-secondary);
-    max-width: 50rem;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
+	.hero-description {
+		font-size: 1.25rem;
+		color: var(--color-text-secondary);
+		max-width: 50rem;
+		margin: 0 auto 2rem;
+		line-height: 1.6;
+	}
 
-  .hero-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    color: var(--color-text-tertiary);
-  }
+	.hero-stats {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		font-size: 0.95rem;
+		color: var(--color-text-tertiary);
+	}
 
-  .stat-item {
-    font-weight: 500;
-  }
+	.stat-item {
+		font-weight: 500;
+	}
 
-  .stat-divider {
-    opacity: 0.5;
-  }
+	.stat-divider {
+		opacity: 0.5;
+	}
 
-  /* Posts Grid */
-  .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
+	/* Posts Grid */
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+		gap: 2rem;
+		margin-bottom: 4rem;
+	}
 
-  @media (min-width: 50rem) {
-    .posts-grid {
-      gap: 2.5rem;
-    }
-  }
+	@media (min-width: 50rem) {
+		.posts-grid {
+			gap: 2.5rem;
+		}
+	}
 
-  /* Post Card */
-  .post-card {
-    background-color: var(--color-bg-card);
-    border: 1px solid var(--color-border-primary);
-    border-radius: var(--radius-lg);
-    border-left: 4px solid var(--color-brand-500);
-    transition: all 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+	/* Post Card */
+	.post-card {
+		background-color: var(--color-bg-card);
+		border: 1px solid var(--color-border-primary);
+		border-radius: var(--radius-lg);
+		border-left: 4px solid var(--color-brand-500);
+		transition: all 0.3s ease;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
 
-  .post-card:hover {
-    border-color: var(--color-border-card-hover);
-    box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
-    transform: translateY(-2px);
-  }
+	.post-card:hover {
+		border-color: var(--color-border-card-hover);
+		box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
+		transform: translateY(-2px);
+	}
 
-  .post-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1.5rem;
-  }
+	.post-link {
+		text-decoration: none;
+		color: inherit;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		padding: 1.5rem;
+	}
 
-  .post-header {
-    margin-bottom: 1rem;
-  }
+	.post-header {
+		margin-bottom: 1rem;
+	}
 
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+	.post-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
 
-  .tag {
-    background-color: rgba(255, 106, 0, 0.15);
-    border: 1px solid rgba(255, 106, 0, 0.3);
-    border-radius: var(--radius-full);
-    padding: 0.25rem 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--color-brand-400);
-    text-transform: lowercase;
-  }
+	.tag {
+		background-color: rgba(255, 106, 0, 0.15);
+		border: 1px solid rgba(255, 106, 0, 0.3);
+		border-radius: var(--radius-full);
+		padding: 0.25rem 0.75rem;
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: var(--color-brand-400);
+		text-transform: lowercase;
+	}
 
-  .post-title {
-    font-family: var(--font-coconat);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-    color: var(--color-text-primary);
-  }
+	.post-title {
+		font-family: var(--font-coconat);
+		font-size: 1.5rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		line-height: 1.3;
+		color: var(--color-text-primary);
+	}
 
-  .post-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--color-text-secondary);
-    margin-bottom: 1rem;
-    flex-grow: 1;
-  }
+	.post-description {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--color-text-secondary);
+		margin-bottom: 1rem;
+		flex-grow: 1;
+	}
 
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--color-text-tertiary);
-    margin-bottom: 1rem;
-  }
+	.post-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.875rem;
+		color: var(--color-text-tertiary);
+		margin-bottom: 1rem;
+	}
 
-  .post-date {
-    font-weight: 500;
-  }
+	.post-date {
+		font-weight: 500;
+	}
 
-  .meta-divider {
-    opacity: 0.5;
-  }
+	.meta-divider {
+		opacity: 0.5;
+	}
 
-  .post-author {
-    font-weight: 400;
-  }
+	.post-author {
+		font-weight: 400;
+	}
 
-  .post-footer {
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-border-primary);
-  }
+	.post-footer {
+		padding-top: 1rem;
+		border-top: 1px solid var(--color-border-primary);
+	}
 
-  .read-more {
-    font-weight: 600;
-    color: var(--color-brand-500);
-    font-size: 0.95rem;
-    display: inline-flex;
-    align-items: center;
-    transition: color 0.2s ease;
-  }
+	.read-more {
+		font-weight: 600;
+		color: var(--color-brand-500);
+		font-size: 0.95rem;
+		display: inline-flex;
+		align-items: center;
+		transition: color 0.2s ease;
+	}
 
-  .post-card:hover .read-more {
-    color: var(--color-brand-400);
-  }
+	.post-card:hover .read-more {
+		color: var(--color-brand-400);
+	}
 
-  /* Empty State */
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--color-text-tertiary);
-  }
+	/* Empty State */
+	.empty-state {
+		text-align: center;
+		padding: 4rem 2rem;
+		color: var(--color-text-tertiary);
+	}
 
-  /* Responsive */
-  @media (max-width: 50rem) {
-    .blog-landing {
-      padding: 1rem 0.5rem;
-    }
+	/* Responsive */
+	@media (max-width: 50rem) {
+		.blog-landing {
+			padding: 1rem 0.5rem;
+		}
 
-    .hero-section {
-      padding: 2rem 0.5rem;
-      margin-bottom: 2rem;
-    }
+		.hero-section {
+			padding: 2rem 0.5rem;
+			margin-bottom: 2rem;
+		}
 
-    .hero-stats {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+		.hero-stats {
+			flex-direction: column;
+			gap: 0.5rem;
+		}
 
-    .stat-divider {
-      display: none;
-    }
-  }
+		.stat-divider {
+			display: none;
+		}
+	}
 </style>

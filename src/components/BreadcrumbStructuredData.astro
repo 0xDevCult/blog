@@ -1,0 +1,34 @@
+---
+/**
+ * Breadcrumb Structured Data Component
+ *
+ * Generates Schema.org BreadcrumbList structured data
+ * This improves SEO and enables breadcrumb display in search results
+ */
+
+interface Props {
+	items: Array<{
+		name: string;
+		url?: string;
+	}>;
+}
+
+const { items } = Astro.props;
+
+// Use Astro.site for dynamic URL handling
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://blog.devcult.io';
+
+// Build the breadcrumb list
+const breadcrumbList = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: items.map((item, index) => ({
+		'@type': 'ListItem',
+		position: index + 1,
+		name: item.name,
+		...(item.url && { item: new URL(item.url, siteUrl).toString() }),
+	})),
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbList, null, 0)} />

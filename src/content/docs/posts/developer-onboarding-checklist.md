@@ -29,10 +29,11 @@ Your README is your storefront. Make it count.
 **Why it matters:** Developers need to know immediately if this solves their problem.
 
 **Example:**
+
 ```markdown
 # SuperCache
 
-A Redis-compatible in-memory cache with automatic persistence and 
+A Redis-compatible in-memory cache with automatic persistence and
 sub-millisecond latency. Perfect for high-traffic applications.
 ```
 
@@ -43,9 +44,11 @@ sub-millisecond latency. Perfect for high-traffic applications.
 **Why it matters:** Developers are visual. Show, don't just tell.
 
 **Bad:**
+
 > "Our CLI tool makes deployment easy!"
 
 **Good:**
+
 ```bash
 $ devcult deploy
 ✓ Building project...
@@ -61,6 +64,7 @@ $ devcult deploy
 **Why it matters:** Every extra step is a chance for developers to bounce.
 
 **Examples:**
+
 ```bash
 # Package managers
 npm install supercache
@@ -78,6 +82,7 @@ curl -fsSL https://get.project.dev | sh
 **Why it matters:** Developers want immediate gratification. Give them a win.
 
 **Example:**
+
 ```typescript
 import { Cache } from 'supercache';
 
@@ -95,6 +100,7 @@ console.log(await cache.get('greeting'));
 **Why it matters:** Nothing kills momentum like discovering you need Python 3.11 after you've already started.
 
 **Example:**
+
 ```markdown
 ## Prerequisites
 
@@ -110,6 +116,7 @@ console.log(await cache.get('greeting'));
 **Why it matters:** Don't overwhelm newcomers with every feature and option upfront.
 
 **Structure:**
+
 1. Quick Start (5 minutes)
 2. Common Use Cases (15 minutes)
 3. Advanced Configuration (deep dive)
@@ -122,6 +129,7 @@ console.log(await cache.get('greeting'));
 **Why it matters:** Developers will copy-paste your examples. Make sure they work.
 
 **Tips:**
+
 - Test all examples in your CI/CD pipeline
 - Include imports and setup code
 - Show expected output
@@ -134,6 +142,7 @@ console.log(await cache.get('greeting'));
 **Why it matters:** When things break (and they will), developers need quick answers.
 
 **Example:**
+
 ```markdown
 ## Troubleshooting
 
@@ -143,7 +152,9 @@ console.log(await cache.get('greeting'));
 
 **Solution:**
 \`\`\`bash
+
 # Start Redis
+
 redis-server
 \`\`\`
 
@@ -164,6 +175,7 @@ npm install
 **Why it matters:** Don't leave developers hanging after "Hello World."
 
 **Example:**
+
 ```markdown
 ## Next Steps
 
@@ -182,6 +194,7 @@ Now that you have SuperCache running, you can:
 **Why it matters:** Social proof and immediate status indication.
 
 **Example:**
+
 ```markdown
 [![Build Status](https://img.shields.io/github/workflow/status/...)]()
 [![npm version](https://img.shields.io/npm/v/supercache)]()
@@ -196,6 +209,7 @@ Now that you have SuperCache running, you can:
 **Why it matters:** Making contribution easy grows your community.
 
 **Essential elements:**
+
 - How to report bugs
 - How to request features
 - Development setup
@@ -209,6 +223,7 @@ Now that you have SuperCache running, you can:
 **Why it matters:** Developers want to know someone will fix bugs and answer questions.
 
 **Include:**
+
 - Active maintainers
 - Response time expectations
 - Community channels (Discord, Slack, GitHub Discussions)
@@ -228,10 +243,13 @@ One-sentence value proposition.
 ## Quick Start
 
 \`\`\`bash
+
 # Installation
+
 npm install project-name
 
 # Hello World
+
 [30-second example]
 \`\`\`
 
@@ -277,20 +295,25 @@ Want to know if your onboarding is good? Try this:
 ## Common Mistakes
 
 ### ❌ Assuming Context
+
 > "First, make sure your environment is configured."
 
 Configured how? With what? Be explicit.
 
 ### ❌ Buried Lede
+
 Don't make developers scroll past 500 lines of badges and contributor lists to find out what your project does.
 
 ### ❌ Broken Examples
+
 Test your code examples. Regularly. In CI/CD.
 
 ### ❌ "It Works on My Machine"
+
 Your laptop has 47 environment variables and tools installed. Your users don't.
 
 ### ❌ No Version Information
+
 Which version of dependencies? Which version of your project? Be specific.
 
 ## The ROI of Great Onboarding
@@ -317,4 +340,4 @@ Remember: **You never get a second chance at a first impression.**
 
 ---
 
-*Questions about developer onboarding? [Let's chat](https://devcult.io#contact) - we help teams improve their developer experience every day.*
+_Questions about developer onboarding? [Let's chat](https://devcult.io#contact) - we help teams improve their developer experience every day._

@@ -1,35 +1,46 @@
 {
-  "name": "devcult-blog",
-  "type": "module",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug"
-  },
-  "dependencies": {
-    "@astrojs/rss": "^4.0.14",
-    "@astrojs/starlight": "^0.36.2",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.6.1",
-    "gray-matter": "^4.0.3",
-    "sharp": "^0.34.2",
-    "tailwindcss": "^4.1.18"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@axe-core/playwright": "^4.11.0",
-    "@playwright/test": "^1.57.0",
-    "@vitest/ui": "^4.0.15",
-    "typescript": "^5.7.2",
-    "vitest": "^4.0.15"
-  }
+	"name": "devcult-blog",
+	"type": "module",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"build": "astro check && astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:ui": "vitest --ui",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui",
+		"test:e2e:debug": "playwright test --debug",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"lint": "eslint . --ext .ts,.astro",
+		"lint:fix": "eslint . --ext .ts,.astro --fix"
+	},
+	"dependencies": {
+		"@astrojs/rss": "^4.0.14",
+		"@astrojs/sitemap": "^3.6.0",
+		"@astrojs/starlight": "^0.36.2",
+		"@tailwindcss/vite": "^4.1.18",
+		"astro": "^5.6.1",
+		"gray-matter": "^4.0.3",
+		"sharp": "^0.34.2",
+		"tailwindcss": "^4.1.18"
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.4",
+		"@axe-core/playwright": "^4.11.0",
+		"@playwright/test": "^1.57.0",
+		"@typescript-eslint/eslint-plugin": "^8.49.0",
+		"@typescript-eslint/parser": "^8.49.0",
+		"@vitest/ui": "^4.0.15",
+		"eslint": "^9.39.1",
+		"eslint-plugin-astro": "^1.5.0",
+		"prettier": "^3.7.4",
+		"prettier-plugin-astro": "^0.14.1",
+		"typescript": "^5.7.2",
+		"vitest": "^4.0.15"
+	}
 }

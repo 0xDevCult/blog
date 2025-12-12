@@ -9,6 +9,7 @@
 
 import Default from '@astrojs/starlight/components/Head.astro';
 import StructuredData from '../StructuredData.astro';
+import BreadcrumbStructuredData from '../BreadcrumbStructuredData.astro';
 
 const { entry } = Astro.props;
 
@@ -27,19 +28,66 @@ const tags = entry?.data ? (entry.data as any).tags : undefined;
 ---
 
 <Default {...Astro.props}>
-  {isBlogPost && description && (
-    <StructuredData
-      title={title}
-      description={description}
-      date={date}
-      author={author}
-      tags={tags}
-      url={url}
-    />
-  )}
+	{
+		isBlogPost && description && (
+			<>
+				<StructuredData
+					title={title}
+					description={description}
+					date={date}
+					author={author}
+					tags={tags}
+					url={url}
+				/>
+				<BreadcrumbStructuredData
+					items={[{ name: 'Home', url: '/' }, { name: 'Posts', url: '/posts/' }, { name: title }]}
+				/>
+			</>
+		)
+	}
 
-  <!-- Additional canonical URL for SEO -->
-  <link rel="canonical" href={`https://blog.devcult.io${url}`} />
+	<!-- Additional canonical URL for SEO -->
+	<link rel="canonical" href={new URL(url, Astro.site || 'https://blog.devcult.io').toString()} />
 
-  <slot />
+	{
+		isBlogPost && (
+			<>
+				{/* Twitter Card */}
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta name="twitter:site" content="@0xDevCult" />
+				<meta name="twitter:title" content={title} />
+				<meta name="twitter:description" content={description} />
+				<meta
+					name="twitter:image"
+					content={`${Astro.site || 'https://blog.devcult.io'}og-image.png`}
+				/>
+
+				{/* Article Meta */}
+				{date && (
+					<>
+						<meta property="article:published_time" content={new Date(date).toISOString()} />
+						<meta property="article:modified_time" content={new Date(date).toISOString()} />
+					</>
+				)}
+				{author && <meta property="article:author" content={author} />}
+				{tags && tags.map((tag: string) => <meta property="article:tag" content={tag} />)}
+
+				{/* Robots */}
+				<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+			</>
+		)
+	}
+
+	{/* Analytics - Plausible (Privacy-friendly) */}
+	{
+		import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
+			<script
+				defer
+				data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN}
+				src="https://plausible.io/js/script.js"
+			/>
+		)
+	}
+
+	<slot />
 </Default>

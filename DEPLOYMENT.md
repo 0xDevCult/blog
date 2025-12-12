@@ -51,6 +51,7 @@ TTL:   3600 (or automatic)
 - **Route 53**: Hosted zones → Create record
 
 **Verification:**
+
 ```bash
 # Check DNS propagation (may take up to 24 hours)
 dig blog.devcult.io
@@ -68,6 +69,7 @@ git push origin main
 ```
 
 Or trigger manually:
+
 1. Go to **Actions** tab on GitHub
 2. Select **Deploy to GitHub Pages** workflow
 3. Click **Run workflow** → **Run workflow**
@@ -75,6 +77,7 @@ Or trigger manually:
 ### 5. Verify Deployment
 
 After 2-5 minutes, visit:
+
 - https://blog.devcult.io
 
 You should see the DevCult blog homepage.
@@ -108,6 +111,7 @@ The deployment workflow (`.github/workflows/deploy.yml`) performs these steps:
 ### Build Fails
 
 **Check the Actions log:**
+
 1. Go to **Actions** tab on GitHub
 2. Click on the failed workflow run
 3. Expand the failed step to see error details
@@ -121,11 +125,13 @@ The deployment workflow (`.github/workflows/deploy.yml`) performs these steps:
 ### 404 on Custom Domain
 
 **Causes:**
+
 - DNS not propagated yet (wait up to 24 hours)
 - CNAME file missing (should be in `public/CNAME`)
 - GitHub Pages not configured correctly
 
 **Fixes:**
+
 ```bash
 # Verify CNAME file exists
 cat public/CNAME
@@ -139,10 +145,12 @@ dig blog.devcult.io
 ### Styles Not Loading
 
 **Causes:**
+
 - Incorrect `site` URL in `astro.config.mjs`
 - CSS file path wrong
 
 **Fixes:**
+
 ```bash
 # Verify config
 grep "site:" astro.config.mjs
@@ -158,10 +166,12 @@ git push origin main
 ### Images Not Displaying
 
 **Causes:**
+
 - Images in wrong directory
 - Incorrect image paths
 
 **Fixes:**
+
 - Place images in `src/assets/` or `public/`
 - Use correct relative paths in markdown
 - Run `npm run build` locally to test
@@ -221,11 +231,13 @@ Protect your `main` branch:
 ### Secrets Management
 
 Never commit:
+
 - API keys
 - Passwords
 - Private tokens
 
 Use GitHub Secrets for sensitive data:
+
 1. **Settings** → **Secrets and variables** → **Actions**
 2. Add secrets as needed
 3. Reference in workflow: `${{ secrets.SECRET_NAME }}`
@@ -259,11 +271,13 @@ git push origin main --force
 ### Monitoring Performance
 
 Use tools like:
+
 - [Google PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest](https://www.webpagetest.org/)
 - [GTmetrix](https://gtmetrix.com/)
 
 Target metrics:
+
 - LCP (Largest Contentful Paint): < 2.5s
 - FID (First Input Delay): < 100ms
 - CLS (Cumulative Layout Shift): < 0.1

@@ -5,79 +5,78 @@ import ThemeSelect from './ThemeSelect.astro';
 
 <!-- Fixed logo in top-left corner -->
 <div class="fixed-logo">
-  <img src="/og-image.png" alt="DevCult Blog" />
+	<img src="/og-image.png" alt="DevCult Blog" />
 </div>
 
 <!-- Default Starlight Sidebar with spacing for logo -->
 <div class="sidebar-content-wrapper">
-  <!-- Theme selector at the top of sidebar menu -->
-  <div class="sidebar-theme-selector-menu">
-    <ThemeSelect {...Astro.props} />
-  </div>
-  
-  <Default {...Astro.props}><slot /></Default>
+	<!-- Theme selector at the top of sidebar menu -->
+	<div class="sidebar-theme-selector-menu">
+		<ThemeSelect {...Astro.props} />
+	</div>
+
+	<Default {...Astro.props}><slot /></Default>
 </div>
 
 <style>
-  /* CSS Custom Properties */
-  :root {
-    --sidebar-logo-height: 300px;
-  }
+	/* CSS Custom Properties */
+	:root {
+		--sidebar-logo-height: 300px;
+	}
 
-  .sidebar-theme-selector-menu {
-    display: none;
-    padding: 1rem 0.5rem;
-    border-bottom: 1px solid var(--color-border-primary);
-    margin-bottom: 1rem;
-  }
+	.sidebar-theme-selector-menu {
+		display: none;
+		padding: 1rem 0.5rem;
+		border-bottom: 1px solid var(--color-border-primary);
+		margin-bottom: 1rem;
+	}
 
-  .sidebar-theme-selector-menu :global(.theme-select-wrapper) {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-  }
+	.sidebar-theme-selector-menu :global(.theme-select-wrapper) {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+	}
 
-  .fixed-logo {
-    position: fixed;
-    top: 0.75rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    width: calc(var(--sl-sidebar-width) - 1.5rem);
-    max-width: calc(var(--sl-sidebar-width) - 1.5rem);
-    z-index: 1000;
-  }
+	.fixed-logo {
+		position: fixed;
+		top: 0.75rem;
+		left: 0.75rem;
+		right: 0.75rem;
+		width: calc(var(--sl-sidebar-width) - 1.5rem);
+		max-width: calc(var(--sl-sidebar-width) - 1.5rem);
+		z-index: 1000;
+	}
 
-  .fixed-logo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: var(--radius-md);
-    border-left: 4px solid var(--color-brand-500);
-    border-top: 1px solid var(--color-border-primary);
-    border-right: 1px solid var(--color-border-primary);
-    border-bottom: 1px solid var(--color-border-primary);
-    box-shadow: var(--shadow-glow);
-    background-color: var(--color-bg-sidebar);
-  }
+	.fixed-logo img {
+		width: 100%;
+		height: auto;
+		display: block;
+		border-radius: var(--radius-md);
+		border-left: 4px solid var(--color-brand-500);
+		border-top: 1px solid var(--color-border-primary);
+		border-right: 1px solid var(--color-border-primary);
+		border-bottom: 1px solid var(--color-border-primary);
+		box-shadow: var(--shadow-glow);
+		background-color: var(--color-bg-sidebar);
+	}
 
-  .sidebar-content-wrapper {
-    padding-top: var(--sidebar-logo-height);
-    position: relative;
-    z-index: 1;
-  }
+	.sidebar-content-wrapper {
+		padding-top: var(--sidebar-logo-height);
+		position: relative;
+		z-index: 1;
+	}
 
-  @media (max-width: 50rem) {
-    .sidebar-theme-selector-menu {
-      display: block;
-    }
+	@media (max-width: 50rem) {
+		.sidebar-theme-selector-menu {
+			display: block;
+		}
 
-    .fixed-logo {
-      display: none;
-    }
+		.fixed-logo {
+			display: none;
+		}
 
-    .sidebar-content-wrapper {
-      padding-top: 0;
-    }
-  }
+		.sidebar-content-wrapper {
+			padding-top: 0;
+		}
+	}
 </style>
-
