@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+
+// Get all posts and sort by date (newest first)
+const posts = await getCollection('docs', ({ id }) => {
+  return id.startsWith('posts/');
+});
+
+const sortedPosts = posts.sort((a, b) => {
+  const dateA = (a.data as any).date ? new Date((a.data as any).date).getTime() : 0;
+  const dateB = (b.data as any).date ? new Date((b.data as any).date).getTime() : 0;
+  return dateB - dateA;
+});
+
+// Get the latest post
+const latestPost = sortedPosts[0];
+
+// Redirect to the latest post
+if (latestPost) {
+  return Astro.redirect(`/${latestPost.id.replace('.md', '').replace('.mdx', '')}/`);
+}
+
+// Fallback if no posts exist
+return Astro.redirect('/posts/welcome-to-devcult-blog/');
+---
