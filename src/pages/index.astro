@@ -26,14 +26,10 @@ const sortedPosts = postsWithFrontmatter.sort((a, b) => {
 // Get the latest post
 const latestPost = sortedPosts[0];
 
-// Redirect to the latest post - use 301 for permanent redirect
-if (latestPost) {
-  // Remove file extension properly
-  return Astro.redirect(`/${latestPost.id.replace(/\.mdx?$/, '')}/`, 301);
-}
-
-// Fallback if no posts exist
-return Astro.redirect('/posts/welcome-to-devcult-blog/', 301);
+// Determine redirect URL
+const redirectUrl = latestPost
+  ? `/${latestPost.id.replace(/\.mdx?$/, '')}/`
+  : '/posts/welcome-to-devcult-blog/';
 ---
 
 <!DOCTYPE html>
@@ -42,9 +38,14 @@ return Astro.redirect('/posts/welcome-to-devcult-blog/', 301);
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Redirecting...</title>
-	<meta http-equiv="refresh" content="0;url=/posts/welcome-to-devcult-blog/">
+	<meta http-equiv="refresh" content={`0;url=${redirectUrl}`}>
+	<script is:inline define:vars={{ redirectUrl }}>
+		// Immediate client-side redirect for faster navigation
+		window.location.href = redirectUrl;
+	</script>
 </head>
 <body>
 	<p>Redirecting to the latest post...</p>
+	<p>If you are not redirected automatically, <a href={redirectUrl}>click here</a>.</p>
 </body>
 </html>
