@@ -49,10 +49,13 @@ Each level serves a different audience with different needs:
 Developers are busy. Every unnecessary word is a tax on their attention.
 
 **Bad:**
+
 > In order to facilitate the initialization of the application in your local development environment, you will need to execute the installation command using the npm package manager.
 
 **Good:**
+
 > Install dependencies:
+>
 > ```bash
 > npm install
 > ```
@@ -62,21 +65,23 @@ Developers are busy. Every unnecessary word is a tax on their attention.
 Code examples first, explanations second.
 
 **Bad:**
+
 > The `createUser` function accepts a configuration object with properties for username, email, and optional role assignment. The role parameter defaults to 'user' if not specified. The function returns a Promise that resolves to a User object.
 
 **Good:**
+
 ```typescript
 // Create a basic user
 const user = await createUser({
-  username: 'alice',
-  email: 'alice@example.com'
+	username: 'alice',
+	email: 'alice@example.com',
 });
 
 // Create an admin user
 const admin = await createUser({
-  username: 'bob',
-  email: 'bob@example.com',
-  role: 'admin'
+	username: 'bob',
+	email: 'bob@example.com',
+	role: 'admin',
 });
 ```
 
@@ -96,6 +101,7 @@ If your code examples don't actually work, your documentation is worse than usel
 Developers scan documentation looking for the specific piece they need. Help them.
 
 **Techniques:**
+
 - Use descriptive headings
 - Add code syntax highlighting
 - Include a table of contents for long pages
@@ -107,6 +113,7 @@ Developers scan documentation looking for the specific piece they need. Help the
 Outdated docs are worse than no docs. They waste time and erode trust.
 
 **Strategies:**
+
 - Set up automated checks for broken links
 - Review docs with each major release
 - Add "last updated" dates
@@ -143,7 +150,7 @@ import { auth } from 'superauth';
 
 // Protect a route
 app.get('/dashboard', auth.required(), (req, res) => {
-  res.json({ user: req.user });
+res.json({ user: req.user });
 });
 \`\`\`
 
@@ -159,40 +166,49 @@ Tutorials are journeys. They should:
 
 - Start from a clean slate (no assumed knowledge)
 - Build something real (not contrived examples)
-- Explain *why*, not just *how*
+- Explain _why_, not just _how_
 - End with a working project
 - Take 30-60 minutes
 
 **Structure:**
+
 ```markdown
 # Tutorial: Building a Real-Time Chat App
 
 ## What You'll Build
+
 [Screenshot/GIF of the finished product]
 
 ## Prerequisites
+
 - Node.js 18+
 - Basic JavaScript knowledge
 - 45 minutes
 
 ## Step 1: Project Setup
+
 [Clear, testable instructions]
 
 ## Step 2: Creating the Server
+
 [Code + explanation]
 
 ## Step 3: Adding Real-Time Features
+
 [Code + explanation of concepts]
 
 ## Step 4: Deployment
+
 [Production-ready deployment]
 
 ## What You Learned
+
 - WebSocket basics
 - Real-time data synchronization
 - Production deployment
 
 ## Next Steps
+
 - [Add user authentication](./auth-tutorial.md)
 - [Scale with Redis](./scaling-tutorial.md)
 ```
@@ -202,6 +218,7 @@ Tutorials are journeys. They should:
 How-to guides answer specific questions: "How do I...?"
 
 **Characteristics:**
+
 - Goal-oriented
 - Assumes base knowledge
 - Gets straight to the point
@@ -218,8 +235,8 @@ Rate limiting prevents API abuse. Here's how to add it:
 import { rateLimit } from 'superauth';
 
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per window
+windowMs: 15 _ 60 _ 1000, // 15 minutes
+max: 100 // limit each IP to 100 requests per window
 }));
 \`\`\`
 
@@ -283,9 +300,9 @@ Promise<User> - Resolves to created user object
 
 \`\`\`typescript
 const user = await createUser({
-  username: 'alice',
-  email: 'alice@example.com',
-  password: 'secure-password-123'
+username: 'alice',
+email: 'alice@example.com',
+password: 'secure-password-123'
 });
 \`\`\`
 
@@ -300,7 +317,7 @@ const user = await createUser({
 
 ### ❌ "Just Read the Code"
 
-Code is documentation of *how*, not *why*. Developers need context, not just implementation.
+Code is documentation of _how_, not _why_. Developers need context, not just implementation.
 
 ### ❌ Everything in the README
 
@@ -400,4 +417,4 @@ Documentation is not an afterthought—it's a core product feature. Developers j
 
 ---
 
-*Need help improving your documentation? [We specialize in developer experience](https://devcult.io#contact) and would love to help.*
+_Need help improving your documentation? [We specialize in developer experience](https://devcult.io#contact) and would love to help._

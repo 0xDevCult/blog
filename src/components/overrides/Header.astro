@@ -5,6 +5,8 @@ import Search from '@astrojs/starlight/components/Search.astro';
 import ThemeSelect from './ThemeSelect.astro';
 ---
 
+<a href="#main-content" class="skip-link"> Skip to main content </a>
+
 <div class="header sl-flex">
 	<div class="sl-flex header-left">
 		<slot name="start" />
@@ -89,7 +91,7 @@ import ThemeSelect from './ThemeSelect.astro';
 
 		/* Hide theme and language selectors in mobile header */
 		.right-group :global(starlight-theme-select),
-		.right-group :global([aria-label*="language" i]) {
+		.right-group :global([aria-label*='language' i]) {
 			display: none !important;
 		}
 	}
@@ -148,5 +150,24 @@ import ThemeSelect from './ThemeSelect.astro';
 
 	.header-search :global(site-search button:hover svg path) {
 		fill: var(--sl-color-accent-high) !important;
+	}
+
+	/* Skip link for accessibility */
+	.skip-link {
+		position: absolute;
+		top: -40px;
+		left: 0;
+		background: var(--color-brand-500);
+		color: white;
+		padding: 8px 16px;
+		text-decoration: none;
+		z-index: 100;
+		border-radius: 0 0 4px 0;
+		font-weight: 600;
+		transition: top 0.2s ease;
+	}
+
+	.skip-link:focus {
+		top: 0;
 	}
 </style>

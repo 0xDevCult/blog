@@ -1,0 +1,68 @@
+---
+/**
+ * StructuredData Component
+ *
+ * Generates Schema.org JSON-LD structured data for blog posts
+ * This improves SEO and enables rich snippets in search results
+ */
+
+interface Props {
+	title: string;
+	description: string;
+	date?: string;
+	author?: string;
+	tags?: string[];
+	url: string;
+}
+
+const { title, description, date, author, tags, url } = Astro.props;
+
+// Use Astro.site for dynamic URL handling (works in dev and production)
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://blog.devcult.io';
+const fullUrl = new URL(url, siteUrl).toString();
+
+// Build the structured data object
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description: description,
+	url: fullUrl,
+	datePublished: date ? new Date(date).toISOString() : undefined,
+	dateModified: date ? new Date(date).toISOString() : undefined,
+	author: {
+		'@type': author === 'DevCult Team' || !author ? 'Organization' : 'Person',
+		name: author || 'DevCult Team',
+		url: 'https://devcult.io',
+	},
+	publisher: {
+		'@type': 'Organization',
+		name: 'DevCult',
+		url: 'https://devcult.io',
+		logo: {
+			'@type': 'ImageObject',
+			url: `${siteUrl}/og-image.png`,
+			width: 1200,
+			height: 630,
+		},
+	},
+	keywords: tags?.join(', '),
+	mainEntityOfPage: {
+		'@type': 'WebPage',
+		'@id': fullUrl,
+	},
+	image: {
+		'@type': 'ImageObject',
+		url: `${siteUrl}/og-image.png`,
+		width: 1200,
+		height: 630,
+	},
+};
+
+// Remove undefined values
+const cleanedData = JSON.parse(
+	JSON.stringify(structuredData, (key, value) => (value === undefined ? undefined : value))
+);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(cleanedData, null, 0)} />

@@ -58,6 +58,7 @@ npm run dev
 ```
 
 Visit `http://localhost:4321` and verify:
+
 - Your post renders correctly
 - Images load properly
 - Code examples display with syntax highlighting
@@ -84,6 +85,7 @@ git push origin your-branch-name
 ```
 
 Go to GitHub and create a Pull Request with:
+
 - Clear title describing the change
 - Description of what you changed and why
 - Screenshots (if visual changes)
@@ -100,6 +102,7 @@ Go to GitHub and create a Pull Request with:
 ### Writing Style
 
 ✅ **Do:**
+
 - Write in clear, concise language
 - Use active voice
 - Start with practical examples
@@ -108,6 +111,7 @@ Go to GitHub and create a Pull Request with:
 - Provide actionable takeaways
 
 ❌ **Don't:**
+
 - Write overly academic or verbose content
 - Assume extensive prior knowledge
 - Include code that doesn't work
@@ -116,20 +120,22 @@ Go to GitHub and create a Pull Request with:
 ### Code Examples
 
 All code must be:
+
 - **Tested** and working
 - **Complete** (include imports)
 - **Commented** when needed
 - **Syntax-highlighted** with correct language tags
 
 **Good:**
+
 ````markdown
 ```typescript
 import { createUser } from './auth';
 
 // Create a new user with validation
 const user = await createUser({
-  email: 'alice@example.com',
-  password: 'secure123'
+	email: 'alice@example.com',
+	password: 'secure123',
 });
 
 console.log(user.id); // Output: "user_abc123"
@@ -137,6 +143,7 @@ console.log(user.id); // Output: "user_abc123"
 ````
 
 **Bad:**
+
 ````markdown
 ```
 createUser(email, password)
@@ -146,6 +153,7 @@ createUser(email, password)
 ### Formatting Standards
 
 **Headings:**
+
 - Use sentence case
 - H1 for title (automatic from frontmatter)
 - H2 for main sections
@@ -153,16 +161,19 @@ createUser(email, password)
 - H4 for minor subsections
 
 **Lists:**
+
 - Use bullet points for unordered items
 - Use numbers for sequential steps
 - Keep list items parallel in structure
 
 **Links:**
+
 - Use descriptive link text (not "click here")
 - Prefer HTTPS
 - Test all external links
 
 **Images:**
+
 - Include descriptive alt text
 - Optimize for web (WebP preferred)
 - Place in `src/assets/` or `public/`
@@ -231,6 +242,7 @@ A well-structured post includes:
 ### Topics We Cover
 
 ✅ **Great topics:**
+
 - Developer experience best practices
 - DevRel strategies and tactics
 - Technical tutorials and how-tos
@@ -241,6 +253,7 @@ A well-structured post includes:
 - Community building
 
 ❌ **Off-topic:**
+
 - Pure marketing or sales content
 - Unrelated to developer experience
 - Duplicate content from elsewhere
@@ -249,6 +262,7 @@ A well-structured post includes:
 ### Content Quality Standards
 
 Your post should:
+
 - Provide unique value or perspective
 - Be original content (not copied)
 - Be technically accurate
