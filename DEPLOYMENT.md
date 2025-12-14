@@ -196,7 +196,7 @@ Or visit: https://github.com/0xDevCult/blog/actions
 
 To add analytics:
 
-1. **Plausible** (privacy-friendly)
+1. **Umami** (privacy-friendly, recommended)
    - Add script to `head` in `astro.config.mjs`
 
 2. **Google Analytics**

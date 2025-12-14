@@ -32,11 +32,6 @@ test.describe('Theme Switching', () => {
       return;
     }
 
-    // Get initial theme
-    const initialTheme = await page.evaluate(() => {
-      return document.documentElement.getAttribute('data-theme');
-    });
-
     // Reload page
     await page.reload();
     await page.waitForLoadState('networkidle');
