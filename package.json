@@ -33,6 +33,7 @@
     "@playwright/test": "^1.61.1",
     "@vitest/ui": "^4.1.9",
     "typescript": "^5.7.2",
-    "vitest": "^4.0.15"
+    "vitest": "^4.0.15",
+    "wait-on": "^9.0.10"
   }
 }

@@ -35,8 +35,8 @@ test.describe('Responsive Design', () => {
 		const mainContent = page.locator('main, .sl-markdown-content').first();
 		await expect(mainContent).toBeVisible();
 
-		// Mobile menu button should be visible
-		const menuButton = page.locator('button[aria-label*="menu" i], button[aria-expanded]').first();
+		// Mobile menu button should be visible (inside Starlight's custom element)
+		const menuButton = page.locator('starlight-menu-button button[aria-label="Menu"]');
 		await expect(menuButton).toBeVisible();
 	});
 

@@ -8,15 +8,16 @@ test.describe('RSS Feed', () => {
 		const contentType = response?.headers()['content-type'];
 		expect(contentType).toContain('xml');
 
-		const content = await page.content();
+		// Use response body directly — page.content() wraps XML in browser HTML
+		const content = await response!.text();
 		expect(content).toContain('<?xml version="1.0"');
 		expect(content).toContain('<rss version="2.0"');
 		expect(content).toContain('DevCult Blog');
 	});
 
 	test('should include recent posts', async ({ page }) => {
-		await page.goto('/rss.xml');
-		const content = await page.content();
+		const response = await page.goto('/rss.xml');
+		const content = await response!.text();
 
 		// Should have at least one item
 		expect(content).toContain('<item>');
@@ -27,8 +28,8 @@ test.describe('RSS Feed', () => {
 	});
 
 	test('should have proper RSS structure', async ({ page }) => {
-		await page.goto('/rss.xml');
-		const content = await page.content();
+		const response = await page.goto('/rss.xml');
+		const content = await response!.text();
 
 		// Check for required RSS 2.0 elements
 		expect(content).toContain('<channel>');
@@ -40,8 +41,8 @@ test.describe('RSS Feed', () => {
 	});
 
 	test('should include valid URLs', async ({ page }) => {
-		await page.goto('/rss.xml');
-		const content = await page.content();
+		const response = await page.goto('/rss.xml');
+		const content = await response!.text();
 
 		// URLs should start with http
 		const linkMatches = content.match(/<link>(.*?)<\/link>/g);
