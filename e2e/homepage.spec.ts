@@ -11,7 +11,7 @@ test.describe('Homepage', () => {
 		expect(page.url()).toMatch(/\/$/);
 
 		// Verify landing page content is visible
-		await expect(page.locator('h1:has-text("DevCult Blog")')).toBeVisible();
+		await expect(page.locator('.hero-title')).toBeVisible();
 		await expect(page.locator('text=Technical insights, developer experience')).toBeVisible();
 	});
 

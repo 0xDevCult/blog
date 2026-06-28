@@ -44,7 +44,7 @@
 	--color-brand-300: #ffa954;
 	--color-brand-400: #ff8f26;
 	--color-brand-500: #ff6a00;
-	--color-brand-600: #e66000;
+	--color-brand-600: #a84000;
 	--color-brand-700: #b34400;
 
 	/* Backgrounds - Dark */
@@ -110,9 +110,9 @@
 	--color-text-primary: #1f2937;
 	--color-text-secondary: #374151;
 	--color-text-tertiary: #6b7280;
-	--color-text-accent: #e66000;
-	--color-text-link: #e66000;
-	--color-text-link-hover: #b34400;
+	--color-text-accent: #a84000;
+	--color-text-link: #a84000;
+	--color-text-link-hover: #7a2e00;
 
 	/* Borders - Light */
 	--color-border-primary: rgba(0, 0, 0, 0.1);
@@ -186,14 +186,14 @@
 	--sl-color-bg-inline-code: rgba(255, 106, 0, 0.08);
 
 	--sl-color-text: #1f2937;
-	--sl-color-text-accent: #e66000;
+	--sl-color-text-accent: #a84000;
 
 	--sl-color-hairline: rgba(0, 0, 0, 0.1);
 	--sl-color-hairline-light: rgba(0, 0, 0, 0.08);
 	--sl-color-hairline-shade: rgba(0, 0, 0, 0.15);
 
-	--sl-color-text-link: #e66000;
-	--sl-color-text-link-hover: #b34400;
+	--sl-color-text-link: #a84000;
+	--sl-color-text-link-hover: #7a2e00;
 }
 
 /* ============================================
@@ -213,6 +213,11 @@ body {
 .page {
 	position: relative;
 	z-index: 1;
+}
+
+/* Skip link: ensure contrast against the orange accent background shown on focus */
+.skip-link {
+	color: #000000 !important;
 }
 
 /* ============================================
@@ -699,7 +704,7 @@ site-search input:focus {
 /* Light theme link colors */
 :root[data-theme='light'] a,
 :root[data-theme='light'] .sl-markdown-content a {
-	color: #e66000 !important;
+	color: #a84000 !important;
 }
 
 :root[data-theme='light'] a:hover,
@@ -730,13 +735,13 @@ site-search input:focus {
 
 :root[data-theme='light'] nav a:hover,
 :root[data-theme='light'] .sidebar a:hover {
-	color: #e66000 !important;
+	color: #a84000 !important;
 }
 
 /* Sidebar - Selected/current page styling */
 :root[data-theme='light'] .sidebar a[aria-current='page'],
 :root[data-theme='light'] .sidebar a[aria-current='page']:hover {
-	color: #e66000 !important;
+	color: #a84000 !important;
 	font-weight: 600;
 }
 

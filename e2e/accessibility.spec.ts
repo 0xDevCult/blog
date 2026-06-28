@@ -72,9 +72,12 @@ test.describe('Accessibility', () => {
 
 	test('form inputs should have labels', async ({ page }) => {
 		await page.goto('/posts/welcome-to-devcult-blog/');
+		// Wait for pagefind to load and enable the search button
+		await page.waitForLoadState('networkidle');
 
-		// Click search button to open search
+		// Click search button to open search (pagefind removes the disabled attr once ready)
 		const searchButton = page.locator('site-search button').first();
+		await expect(searchButton).not.toBeDisabled({ timeout: 10000 });
 		await searchButton.click();
 
 		// Wait for search input to appear
@@ -139,9 +142,10 @@ test.describe('Accessibility', () => {
 	test('mobile menu should be accessible', async ({ page }) => {
 		await page.setViewportSize({ width: 375, height: 667 });
 		await page.goto('/posts/welcome-to-devcult-blog/');
+		await page.waitForLoadState('networkidle');
 
-		// Find and check mobile menu button
-		const menuButton = page.locator('button[aria-label*="menu" i], button[aria-expanded]').first();
+		// Starlight renders the menu button inside <starlight-menu-button> custom element
+		const menuButton = page.locator('starlight-menu-button button[aria-label="Menu"]');
 		await expect(menuButton).toBeVisible();
 
 		// Check that button has accessible name
