@@ -12,9 +12,11 @@ test.describe('Security Best Practices', () => {
 		expect(headers).toBeTruthy();
 		if (headers) {
 			const server = headers['server'];
-			expect(server).not.toContain('Apache/');
-			expect(server).not.toContain('nginx/');
-			expect(server).not.toContain('IIS/');
+			if (server !== undefined) {
+				expect(server).not.toContain('Apache/');
+				expect(server).not.toContain('nginx/');
+				expect(server).not.toContain('IIS/');
+			}
 		}
 	});
 

@@ -10,8 +10,8 @@ test.describe('Sitemap', () => {
 	});
 
 	test('should have valid sitemap index structure', async ({ page }) => {
-		await page.goto('/sitemap-index.xml');
-		const content = await page.content();
+		const response = await page.goto('/sitemap-index.xml');
+		const content = await response!.text();
 
 		// Check for XML declaration
 		expect(content).toContain('<?xml version="1.0"');
@@ -36,7 +36,7 @@ test.describe('Sitemap', () => {
 		const response = await page.goto('/sitemap-0.xml');
 		expect(response?.status()).toBe(200);
 
-		const content = await page.content();
+		const content = await response!.text();
 
 		// Check for XML declaration
 		expect(content).toContain('<?xml version="1.0"');
@@ -63,8 +63,8 @@ test.describe('Sitemap', () => {
 	});
 
 	test('should have lastmod dates', async ({ page }) => {
-		await page.goto('/sitemap-0.xml');
-		const content = await page.content();
+		const response = await page.goto('/sitemap-0.xml');
+		const content = await response!.text();
 
 		// Should have lastmod tags with dates
 		expect(content).toContain('<lastmod>');
@@ -109,8 +109,8 @@ test.describe('Sitemap', () => {
 	});
 
 	test('should have proper XML encoding', async ({ page }) => {
-		await page.goto('/sitemap-0.xml');
-		const content = await page.content();
+		const response = await page.goto('/sitemap-0.xml');
+		const content = await response!.text();
 
 		// Should have UTF-8 encoding
 		expect(content).toContain('encoding="UTF-8"');

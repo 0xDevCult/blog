@@ -87,8 +87,10 @@ test.describe('Accessibility', () => {
 		await expect(searchInput).toBeVisible();
 
 		// Check if input has associated label or aria-label
+		// title is a valid ARIA accessible name fallback (used by Pagefind UI)
 		const ariaLabel = await searchInput.getAttribute('aria-label');
 		const ariaLabelledBy = await searchInput.getAttribute('aria-labelledby');
+		const title = await searchInput.getAttribute('title');
 		const id = await searchInput.getAttribute('id');
 
 		let hasLabel = false;
@@ -97,7 +99,7 @@ test.describe('Accessibility', () => {
 			hasLabel = (await label.count()) > 0;
 		}
 
-		expect(ariaLabel || ariaLabelledBy || hasLabel).toBeTruthy();
+		expect(ariaLabel || ariaLabelledBy || hasLabel || title).toBeTruthy();
 	});
 
 	test('should have proper color contrast', async ({ page }) => {

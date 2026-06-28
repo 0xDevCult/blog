@@ -226,7 +226,7 @@ blog/
 │       └── deploy.yml          # GitHub Pages deployment
 ├── public/
 │   ├── CNAME                   # Custom domain config
-│   └── favicon.svg             # Site favicon
+│   └── favicon.png             # Site favicon
 ├── src/
 │   ├── assets/
 │   │   └── logo.svg            # DevCult logo

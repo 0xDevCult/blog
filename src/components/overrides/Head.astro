@@ -11,7 +11,7 @@ import Default from '@astrojs/starlight/components/Head.astro';
 import StructuredData from '../StructuredData.astro';
 import BreadcrumbStructuredData from '../BreadcrumbStructuredData.astro';
 
-const { entry } = Astro.props;
+const entry = Astro.locals.starlightRoute.entry;
 
 // Get current URL
 const url = Astro.url.pathname;
