@@ -28,7 +28,7 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 	},
 	integrations: [
-		sitemap(),
+		sitemap({ lastmod: new Date() }),
 		starlight({
 			title: 'DevCult Blog',
 			description:
@@ -71,7 +71,7 @@ export default defineConfig({
 			},
 			lastUpdated: true,
 			pagination: true,
-			favicon: '/favicon.svg',
+			favicon: '/favicon.png',
 			head: [
 				// Preload critical fonts for better performance (LCP)
 				{

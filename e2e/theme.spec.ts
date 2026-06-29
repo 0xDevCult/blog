@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Theme Switching', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    await page.waitForURL(/\/posts\/.+/);
+    await page.goto('/posts/welcome-to-devcult-blog/');
+    await page.waitForLoadState('networkidle');
   });
 
   test('should be able to toggle theme', async ({ page }) => {

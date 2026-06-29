@@ -215,9 +215,17 @@ body {
 	z-index: 1;
 }
 
-/* Skip link: ensure contrast against the orange accent background shown on focus */
-.skip-link {
+/* Skip link: ensure contrast against the orange accent background shown on focus.
+   Uses higher specificity to win against :root[data-theme='light'] a rule below. */
+.skip-link,
+:root[data-theme='light'] .skip-link {
 	color: #000000 !important;
+}
+
+/* Restore underlines on content links removed by Tailwind v4's a{text-decoration:inherit} reset.
+   Underlines are required so axe link-in-text-block rule doesn't fire. */
+.sl-markdown-content a {
+	text-decoration: underline;
 }
 
 /* ============================================
