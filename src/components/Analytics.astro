@@ -1,0 +1,16 @@
+---
+// Renders Umami analytics only in production builds (PUBLIC_UMAMI_ENABLED=true).
+// The script is cookieless and requires no consent banner.
+const enabled = import.meta.env.PUBLIC_UMAMI_ENABLED === 'true';
+---
+
+{
+	enabled && (
+		<script
+			is:inline
+			defer
+			src="https://anal.devcult.io/script.js"
+			data-website-id="c0519cfb-25f8-4306-b8d1-a72966060155"
+		/>
+	)
+}
