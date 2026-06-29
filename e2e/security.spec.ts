@@ -32,10 +32,19 @@ test.describe('Security Best Practices', () => {
 		});
 	});
 
-	test('should not have inline scripts without CSP allowance', async ({ page }) => {
-		await page.goto('/posts/welcome-to-devcult-blog/');
+	test('all blog posts should have JSON-LD structured data', async ({ page }) => {
+		await page.goto('/');
 
-		const structuredDataScripts = await page.locator('script[type="application/ld+json"]').count();
-		expect(structuredDataScripts).toBeGreaterThan(0);
+		const postHrefs = await page
+			.locator('article.post-card a.post-link')
+			.evaluateAll((els) => els.map((el) => el.getAttribute('href')).filter(Boolean));
+
+		expect(postHrefs.length).toBeGreaterThan(0);
+
+		for (const href of postHrefs) {
+			await page.goto(href!);
+			const count = await page.locator('script[type="application/ld+json"]').count();
+			expect(count, `Missing JSON-LD on ${href}`).toBeGreaterThan(0);
+		}
 	});
 });
