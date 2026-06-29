@@ -36,6 +36,8 @@ jobs:
 
       - name: Build with Astro
         run: npm run build
+        env:
+          PUBLIC_UMAMI_ENABLED: 'true'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

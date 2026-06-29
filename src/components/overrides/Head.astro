@@ -10,6 +10,7 @@
 import Default from '@astrojs/starlight/components/Head.astro';
 import StructuredData from '../StructuredData.astro';
 import BreadcrumbStructuredData from '../BreadcrumbStructuredData.astro';
+import Analytics from '../Analytics.astro';
 
 const entry = Astro.locals.starlightRoute.entry;
 
@@ -74,15 +75,6 @@ const tags = entry?.data ? (entry.data as any).tags : undefined;
 	)
 }
 
-{/* Analytics - Plausible (Privacy-friendly) */}
-{
-	import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN && (
-		<script
-			defer
-			data-domain={import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN}
-			src="https://plausible.io/js/script.js"
-		/>
-	)
-}
+<Analytics />
 
 <slot />
