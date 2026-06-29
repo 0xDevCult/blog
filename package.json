@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/starlight": "^0.37.7",
+    "@astrojs/starlight": "^0.41.1",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^5.18.2",
     "gray-matter": "^4.0.3",
