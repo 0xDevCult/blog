@@ -31,7 +31,7 @@
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
-    "@vitest/ui": "^4.1.9",
+    "@vitest/ui": "^4.1.10",
     "typescript": "^5.7.2",
     "vitest": "^4.0.15",
     "wait-on": "^9.0.10"
