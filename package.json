@@ -19,12 +19,12 @@
     "format": "astro check"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.18",
-    "@astrojs/starlight": "^0.37.7",
-    "@tailwindcss/vite": "^4.3.1",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/starlight": "^0.41.9",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
     "gray-matter": "^4.0.3",
-    "sharp": "^0.35.2",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
